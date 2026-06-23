@@ -73,7 +73,7 @@ async function gcFetch(ep){const r=await fetch(GC_BASE+ep+(ep.includes('?')?'&':
 
 async function loadMitarbeiter(){
   try{
-    const today=new Date().toISOString().split('T')[0];
+    const gestern=new Date();gestern.setDate(gestern.getDate()-1);const today=gestern.toISOString().split('T')[0];
     const[employees,stamps,absences]=await Promise.all([gcFetch('/employees/'),gcFetch('/stamps/?date_from='+today+'&date_to='+today),gcFetch('/absences/?date_from='+today+'&date_to='+today)]);
     const gestempelt=new Set();(Array.isArray(stamps)?stamps:(stamps.results||[])).forEach(s=>{if(s.employee)gestempelt.add(String(s.employee))});
     const urlaubSet=new Set();(Array.isArray(absences)?absences:(absences.results||[])).forEach(a=>{if(a.employee)urlaubSet.add(String(a.employee))});
@@ -91,7 +91,7 @@ async function loadMitarbeiter(){
 }
 
 async function loadBerichte(){
-  try{const today=new Date().toISOString().split('T')[0];const forms=await gcFetch('/forms/?date_from='+today+'&date_to='+today);const fList=Array.isArray(forms)?forms:(forms.results||[]);const ein=new Set();fList.forEach(f=>{const name=(f.employee_name||f.created_by||'').toLowerCase();Object.entries(VA_MAP).forEach(([k,v])=>{if(name.includes(v.name.split(' ')[1].toLowerCase()))ein.add(k)})});renderBerichte(ein)}catch(e){renderBerichte(new Set())}
+  try{const gestern=new Date();gestern.setDate(gestern.getDate()-1);const today=gestern.toISOString().split('T')[0];const forms=await gcFetch('/forms/?date_from='+today+'&date_to='+today);const fList=Array.isArray(forms)?forms:(forms.results||[]);const ein=new Set();fList.forEach(f=>{const name=(f.employee_name||f.created_by||'').toLowerCase();Object.entries(VA_MAP).forEach(([k,v])=>{if(name.includes(v.name.split(' ')[1].toLowerCase()))ein.add(k)})});renderBerichte(ein)}catch(e){renderBerichte(new Set())}
 }
 
 function renderBerichte(ein){
