@@ -2,169 +2,195 @@
 :root{--bg:#F0F2F0;--bg2:#FFFFFF;--bg3:#E8EBE8;--border:#D0D8D0;--teal:#1A7A52;--teal-l:#2A9E6A;--teal-d:#0F5438;--teal-bg:#E8F5EE;--teal-bg2:#D0EDE0;--amber:#C17A00;--amber-bg:#FFF3DC;--red:#C0392B;--red-bg:#FDECEA;--text:#1A1A1A;--text2:#3A3A3A;--text3:#6A7A6A;--font:'Segoe UI',Arial,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-family:var(--font);overflow:hidden}
-.screen{display:grid;grid-template-rows:auto auto 1fr auto;height:100vh}
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 32px 14px;border-bottom:3px solid var(--teal);background:#fff}
-.brand{display:flex;align-items:center;gap:14px}
-.brand-dot{width:14px;height:14px;border-radius:50%;background:var(--teal);animation:pulse 3s infinite}
+.screen{display:grid;grid-template-rows:auto auto auto 1fr auto;height:100vh}
+
+/* TOPBAR */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 28px 12px;border-bottom:3px solid var(--teal);background:#fff}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-dot{width:12px;height:12px;border-radius:50%;background:var(--teal);animation:pulse 3s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-.brand-name{font-size:22px;font-weight:700;color:var(--teal-d)}
-.brand-sub{font-size:13px;color:var(--text3);margin-top:2px;font-weight:500}
-.clock{font-size:42px;font-weight:700;color:var(--teal-d);font-variant-numeric:tabular-nums;text-align:right;line-height:1}
-.topdate{font-size:14px;color:var(--text3);margin-top:3px;text-align:right;font-weight:500}
-.alertbar{padding:12px 32px;font-size:16px;font-weight:700;display:flex;align-items:center;gap:10px;border-bottom:2px solid}
+.brand-name{font-size:20px;font-weight:700;color:var(--teal-d)}
+.brand-sub{font-size:12px;color:var(--text3);margin-top:2px;font-weight:500}
+.clock{font-size:38px;font-weight:700;color:var(--teal-d);font-variant-numeric:tabular-nums;text-align:right;line-height:1}
+.topdate{font-size:13px;color:var(--text3);margin-top:2px;text-align:right;font-weight:500}
+
+/* WETTER BAND */
+.wetterband{display:flex;align-items:center;justify-content:space-between;padding:8px 28px;background:var(--teal-bg);border-bottom:2px solid var(--teal-bg2)}
+.wb-left{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--teal-d)}
+.wb-items{display:flex;align-items:center;gap:24px}
+.wb-item{display:flex;align-items:center;gap:6px}
+.wb-label{font-size:11px;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.wb-val{font-size:16px;font-weight:700;color:var(--text)}
+.wb-sub{font-size:11px;color:var(--text3);font-weight:500}
+.wb-divider{width:1px;height:28px;background:var(--border)}
+
+/* ALERT BAND */
+.alertbar{padding:8px 28px;font-size:15px;font-weight:700;display:flex;align-items:center;gap:10px;border-bottom:2px solid}
 .alert-hitze{background:var(--amber-bg);border-color:var(--amber);color:var(--amber)}
 .alert-info{background:var(--teal-bg);border-color:var(--teal);color:var(--teal-d)}
-.main{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:14px;padding:16px 32px;overflow:hidden}
-.card{background:var(--bg2);border:2px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
-.ch{padding:10px 16px 9px;border-bottom:2px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--bg3)}
-.ct{font-size:13px;font-weight:700;color:var(--teal-d);text-transform:uppercase;letter-spacing:.06em}
-.cs{font-size:11px;color:var(--text3);font-weight:500}
-.cb{padding:14px 16px;flex:1;overflow:hidden}
-.tb{margin-bottom:12px;padding-bottom:12px;border-bottom:2px solid var(--border)}
-.tb:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
-.th{display:flex;align-items:center;gap:10px;margin-bottom:7px}
-.tav{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0;color:#fff}
-.tn{font-size:17px;font-weight:700;color:var(--text)}
-.tc{font-size:12px;color:var(--text3);margin-top:2px;font-weight:500}
-.tsite{font-size:13px;color:var(--teal);margin-bottom:6px;font-weight:600}
-.tl{display:flex;flex-direction:column;gap:4px}
-.ti{display:flex;align-items:baseline;gap:7px;font-size:15px;color:var(--text2);line-height:1.4;font-weight:500}
-.tin{font-size:11px;color:var(--text3);min-width:16px;font-weight:600}
-.stag{display:inline-flex;align-items:center;gap:5px;margin-top:6px;font-size:12px;padding:3px 10px;border-radius:20px;background:#EEF;color:#446;font-weight:600;border:1px solid #CCF}
 
-/* BERICHT KACHEL */
-.bk{background:var(--bg2);border:2px solid var(--red);border-radius:14px;overflow:hidden;transition:border-color .5s;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+/* MAIN GRID */
+.main{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:12px;padding:12px 28px;overflow:hidden}
+
+.card{background:var(--bg2);border:2px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 2px 6px rgba(0,0,0,0.06)}
+.ch{padding:9px 14px 8px;border-bottom:2px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--bg3)}
+.ct{font-size:12px;font-weight:700;color:var(--teal-d);text-transform:uppercase;letter-spacing:.06em}
+.cs{font-size:10px;color:var(--text3);font-weight:500}
+.cb{padding:12px 14px;flex:1;overflow:hidden}
+
+.tb{margin-bottom:10px;padding-bottom:10px;border-bottom:2px solid var(--border)}
+.tb:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.th{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+.tav{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;color:#fff}
+.tn{font-size:15px;font-weight:700;color:var(--text)}
+.tc{font-size:11px;color:var(--text3);margin-top:1px;font-weight:500}
+.tsite{font-size:12px;color:var(--teal);margin-bottom:5px;font-weight:600}
+.tl{display:flex;flex-direction:column;gap:3px}
+.ti{display:flex;align-items:baseline;gap:6px;font-size:14px;color:var(--text2);line-height:1.35;font-weight:500}
+.tin{font-size:10px;color:var(--text3);min-width:14px;font-weight:600}
+.stag{display:inline-flex;align-items:center;gap:4px;margin-top:5px;font-size:11px;padding:2px 9px;border-radius:20px;background:#EEF;color:#446;font-weight:600;border:1px solid #CCF}
+
+.si{display:flex;align-items:flex-start;gap:9px;padding:7px 0;border-bottom:1px solid var(--border)}
+.si:last-child{border-bottom:none}
+.sit{font-size:14px;font-weight:700;color:var(--text)}
+.sid{font-size:11px;color:var(--text3);margin-top:2px;line-height:1.4;font-weight:500}
+
+.li{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border)}
+.li:last-child{border-bottom:none}
+.lt{font-size:18px;font-weight:700;color:var(--amber);min-width:48px;font-variant-numeric:tabular-nums}
+.lbody{flex:1}.lw{font-size:13px;color:var(--text);font-weight:600}
+.ls{font-size:11px;color:var(--text3);margin-top:1px;font-weight:500}
+.ltag{font-size:10px;padding:2px 7px;border-radius:20px;font-weight:700}
+.lok{background:var(--teal-bg2);color:var(--teal-d);border:1px solid var(--teal)}
+
+.ma{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--border)}
+.ma:last-child{border-bottom:none}
+.mav{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;color:#fff}
+.mn{font-size:12px;font-weight:600;color:var(--text)}
+.mt{font-size:10px;color:var(--text3);font-weight:500}
+.mbadge{font-size:10px;padding:2px 7px;border-radius:20px;margin-left:auto;white-space:nowrap;font-weight:700}
+
+/* BERICHT KACHELN */
+.bk{background:var(--bg2);border:2px solid var(--red);border-radius:12px;overflow:hidden;transition:border-color .5s;box-shadow:0 2px 6px rgba(0,0,0,0.06)}
 .bk.allok{border-color:var(--teal)}
-.bkh{padding:10px 16px 9px;border-bottom:2px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;transition:background .5s}
+.bkh{padding:9px 14px 8px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;transition:background .5s}
 .bk-red .bkh{background:var(--red-bg)}
 .bk-green .bkh{background:var(--teal-bg)}
-.bkt{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.bkt{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
 .bk-red .bkt{color:var(--red)}
 .bk-green .bkt{color:var(--teal-d)}
-.pw{display:flex;align-items:center;gap:7px}
-.pb{width:70px;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.pw{display:flex;align-items:center;gap:6px}
+.pb{width:60px;height:5px;background:var(--border);border-radius:3px;overflow:hidden}
 .pf{height:100%;background:var(--teal);border-radius:3px;transition:width .8s ease}
-.pt{font-size:12px;color:var(--text3);font-weight:600}
-.vr{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-bottom:1px solid var(--border)}
+.pt{font-size:11px;color:var(--text3);font-weight:600}
+.vr{display:flex;align-items:center;justify-content:space-between;padding:7px 14px;border-bottom:1px solid var(--border)}
 .vr:last-child{border-bottom:none}
-.vl{display:flex;align-items:center;gap:9px}
-.vav{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
-.vn{font-size:14px;font-weight:600;color:var(--text)}
-.vt{font-size:11px;color:var(--text3)}
-.sp{display:flex;align-items:center;gap:4px;font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px}
+.vl{display:flex;align-items:center;gap:8px}
+.vav{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff}
+.vn{font-size:13px;font-weight:600;color:var(--text)}
+.vt{font-size:10px;color:var(--text3)}
+.sp{display:flex;align-items:center;gap:4px;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px}
 .sd{background:var(--teal-bg2);color:var(--teal-d);border:1px solid var(--teal)}
 .so{background:var(--red-bg);color:var(--red);border:1px solid var(--red)}
-.vtime{font-size:11px;color:var(--text3);min-width:38px;text-align:right;font-weight:500}
-.bk-foot{padding:6px 14px;border-top:1px solid var(--border);font-size:11px;color:var(--text3);font-weight:500;background:var(--bg3)}
+.bk-foot{padding:5px 14px;border-top:1px solid var(--border);font-size:10px;color:var(--text3);font-weight:500;background:var(--bg3)}
 
-.wg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.wc{background:var(--bg3);border-radius:10px;padding:10px 13px;border:1px solid var(--border)}
-.wl{font-size:11px;color:var(--text3);margin-bottom:4px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
-.wv{font-size:24px;font-weight:700;color:var(--text);line-height:1}
-.ws{font-size:11px;color:var(--text3);margin-top:3px;font-weight:500}
-.si{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
-.si:last-child{border-bottom:none}
-.sit{font-size:15px;font-weight:700;color:var(--text)}
-.sid{font-size:12px;color:var(--text3);margin-top:2px;line-height:1.4;font-weight:500}
-.li{display:flex;align-items:center;gap:11px;padding:8px 0;border-bottom:1px solid var(--border)}
-.li:last-child{border-bottom:none}
-.lt{font-size:20px;font-weight:700;color:var(--amber);min-width:52px;font-variant-numeric:tabular-nums}
-.lbody{flex:1}.lw{font-size:14px;color:var(--text);font-weight:600}
-.ls{font-size:12px;color:var(--text3);margin-top:1px;font-weight:500}
-.ltag{font-size:11px;padding:2px 8px;border-radius:20px;font-weight:700}
-.lok{background:var(--teal-bg2);color:var(--teal-d);border:1px solid var(--teal)}
-.ma{display:flex;align-items:center;gap:9px;padding:6px 0;border-bottom:1px solid var(--border)}
-.ma:last-child{border-bottom:none}
-.mav{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;color:#fff}
-.mn{font-size:13px;font-weight:600;color:var(--text)}
-.mt{font-size:11px;color:var(--text3);font-weight:500}
-.mbadge{font-size:11px;padding:2px 8px;border-radius:20px;margin-left:auto;white-space:nowrap;font-weight:700}
-.footer{padding:9px 32px;border-top:2px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:#fff}
-.fl{font-size:12px;color:var(--text3);display:flex;align-items:center;gap:9px;font-weight:500}
-.fdot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
+.footer{padding:7px 28px;border-top:2px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:#fff}
+.fl{font-size:11px;color:var(--text3);display:flex;align-items:center;gap:8px;font-weight:500}
+.fdot{width:7px;height:7px;border-radius:50%;background:var(--teal)}
 .fdot.err{background:var(--red)}
 .fdot.loading{background:var(--amber);animation:pulse 1s infinite}
-.fr{font-size:12px;color:var(--text3);font-weight:500}
+.fr{font-size:11px;color:var(--text3);font-weight:500}
 </style></head><body>
 <div class="screen">
 
+<!-- TOPBAR -->
 <div class="topbar">
   <div class="brand"><div class="brand-dot"></div><div><div class="brand-name">Daniel Schieler Gartengestaltung</div><div class="brand-sub">Morgen-Briefing · Baustelle · KW 26</div></div></div>
   <div><div class="clock" id="clk">--:--</div><div class="topdate" id="topdate"></div></div>
 </div>
 
-<div class="alertbar alert-hitze" id="alertbar"><span>⚠</span><span id="alerttext">Wetterdaten werden geladen...</span></div>
+<!-- WETTER BAND -->
+<div class="wetterband">
+  <div class="wb-left">🌤 Wetter Vaihingen</div>
+  <div class="wb-items">
+    <div class="wb-item"><div><div class="wb-label">Temperatur</div><div class="wb-val" id="wx-t">–</div><div class="wb-sub" id="wx-ts"></div></div></div>
+    <div class="wb-divider"></div>
+    <div class="wb-item"><div><div class="wb-label">Niederschlag</div><div class="wb-val" id="wx-r">–</div><div class="wb-sub" id="wx-rs"></div></div></div>
+    <div class="wb-divider"></div>
+    <div class="wb-item"><div><div class="wb-label">Wind</div><div class="wb-val" id="wx-w">–</div><div class="wb-sub" id="wx-ws"></div></div></div>
+    <div class="wb-divider"></div>
+    <div class="wb-item"><div><div class="wb-label">UV-Index</div><div class="wb-val" id="wx-u">–</div><div class="wb-sub" id="wx-us"></div></div></div>
+  </div>
+  <div class="wb-left" id="wx-time" style="font-size:11px;font-weight:500;color:var(--text3)">live</div>
+</div>
 
+<!-- ALERT BAND -->
+<div class="alertbar alert-hitze" id="alertbar"><span>⚠</span><span id="alerttext">Hinweise werden geladen...</span></div>
+
+<!-- MAIN -->
 <div class="main">
 
   <!-- LINKS: Teams -->
-  <div style="display:flex;flex-direction:column;gap:12px">
+  <div style="display:flex;flex-direction:column;gap:10px">
     <div class="card" style="flex:1">
       <div class="ch"><div class="ct">📋 Aufgaben heute</div><div class="cs">KW 26 · Excel</div></div>
       <div class="cb" id="teams-body"></div>
     </div>
   </div>
 
-  <!-- MITTE: Wetter + Sicherheit + Lieferungen -->
-  <div style="display:flex;flex-direction:column;gap:12px">
+  <!-- MITTE: Sicherheit + Lieferungen + Mitarbeiter -->
+  <div style="display:flex;flex-direction:column;gap:10px">
     <div class="card">
-      <div class="ch"><div class="ct">🌤 Wetter · Vaihingen</div><div class="cs" id="wx-time">live</div></div>
-      <div class="cb">
-        <div class="wg">
-          <div class="wc"><div class="wl">Temperatur</div><div class="wv" id="wx-t">–</div><div class="ws" id="wx-ts"></div></div>
-          <div class="wc"><div class="wl">Niederschlag</div><div class="wv" id="wx-r">–</div><div class="ws" id="wx-rs"></div></div>
-          <div class="wc"><div class="wl">Wind</div><div class="wv" id="wx-w">–</div><div class="ws" id="wx-ws"></div></div>
-          <div class="wc"><div class="wl">UV-Index</div><div class="wv" id="wx-u">–</div><div class="ws" id="wx-us"></div></div>
-        </div>
-      </div>
-    </div>
-    <div class="card" style="flex:1">
       <div class="ch"><div class="ct">⛑ Sicherheitshinweise</div></div>
       <div class="cb">
-        <div class="si"><div style="font-size:20px;flex-shrink:0;margin-top:1px">💧</div><div><div class="sit">Mindestens 2–3 Liter trinken</div><div class="sid">Regelmäßig Pausen einlegen. Wasserflaschen im Transporter.</div></div></div>
-        <div class="si"><div style="font-size:20px;flex-shrink:0;margin-top:1px">⛑</div><div><div class="sit">Schutzausrüstung vollständig</div><div class="sid">Helm, Handschuhe, Sicherheitsschuhe bei allen Aushubarbeiten.</div></div></div>
-        <div class="si" id="kran-hinweis" style="display:none"><div style="font-size:20px;flex-shrink:0;margin-top:1px">🏗</div><div><div class="sit">Kran diese Woche — Einweisung Pflicht</div><div class="sid">Nur eingewiesene MA im Schwenkbereich. Vorarbeiter koordiniert.</div></div></div>
+        <div class="si"><div style="font-size:18px;flex-shrink:0;margin-top:1px">💧</div><div><div class="sit">Mindestens 2–3 Liter trinken</div><div class="sid">Regelmäßig Pausen. Wasserflaschen im Transporter.</div></div></div>
+        <div class="si"><div style="font-size:18px;flex-shrink:0;margin-top:1px">⛑</div><div><div class="sit">Schutzausrüstung vollständig</div><div class="sid">Helm, Handschuhe, Sicherheitsschuhe bei Aushubarbeiten.</div></div></div>
+        <div class="si" id="kran-hinweis" style="display:none"><div style="font-size:18px;flex-shrink:0;margin-top:1px">🏗</div><div><div class="sit">Kran diese Woche — Einweisung Pflicht</div><div class="sid">Nur eingewiesene MA im Schwenkbereich.</div></div></div>
       </div>
     </div>
     <div class="card">
       <div class="ch"><div class="ct">🚚 Lieferungen heute</div><div class="cs">Wochenplan</div></div>
-      <div class="cb" id="liefer-body"><div style="color:var(--text3);font-size:14px;font-weight:500">Keine Lieferungen eingetragen</div></div>
+      <div class="cb" id="liefer-body"><div style="color:var(--text3);font-size:13px;font-weight:500">Keine Lieferungen eingetragen</div></div>
+    </div>
+    <div class="card" style="flex:1">
+      <div class="ch"><div class="ct">👷 Mitarbeiter heute</div><div class="cs">Geocapture</div></div>
+      <div class="cb" id="ma-body"><div style="color:var(--text3);font-size:12px">⏳ Lade...</div></div>
     </div>
   </div>
 
-  <!-- RECHTS: Mitarbeiter + Bautagesbericht + Tagesrapport -->
-  <div style="display:flex;flex-direction:column;gap:12px">
+  <!-- RECHTS: Bautagesbericht + Tagesrapport -->
+  <div style="display:flex;flex-direction:column;gap:10px">
 
-    <div class="card">
-      <div class="ch"><div class="ct">👷 Mitarbeiter heute</div><div class="cs">Geocapture</div></div>
-      <div class="cb" id="ma-body"><div style="color:var(--text3);font-size:13px">⏳ Lade...</div></div>
-    </div>
-
-    <!-- BAUTAGESBERICHT -->
     <div class="bk bk-red" id="bc-btb">
       <div class="bkh">
         <div class="bkt">📄 Bautagesbericht — gestern</div>
         <div class="pw"><div class="pb"><div class="pf" id="pf-btb" style="width:0%"></div></div><div class="pt" id="pt-btb">0 von 3</div></div>
       </div>
-      <div id="body-btb"><div style="padding:8px 14px;font-size:12px;color:var(--text3)">⏳ Lade...</div></div>
-      <div class="bk-foot">Bautagesbericht · Geocapture Formulare</div>
+      <div id="body-btb"><div style="padding:8px 14px;font-size:12px;color:var(--text3)">⏳ Lade Geocapture...</div></div>
+      <div class="bk-foot">Pflicht täglich · Status vom Vortag</div>
     </div>
 
-    <!-- TAGESRAPPORT -->
     <div class="bk bk-red" id="bc-rap">
       <div class="bkh">
         <div class="bkt">📝 Tagesrapport — gestern</div>
         <div class="pw"><div class="pb"><div class="pf" id="pf-rap" style="width:0%"></div></div><div class="pt" id="pt-rap">0 von 3</div></div>
       </div>
-      <div id="body-rap"><div style="padding:8px 14px;font-size:12px;color:var(--text3)">⏳ Lade...</div></div>
-      <div class="bk-foot">Tagesrapport · Geocapture Formulare</div>
+      <div id="body-rap"><div style="padding:8px 14px;font-size:12px;color:var(--text3)">⏳ Lade Geocapture...</div></div>
+      <div class="bk-foot">Pflicht täglich · Status vom Vortag</div>
+    </div>
+
+    <!-- Fahrzeuge -->
+    <div class="card" style="flex:1">
+      <div class="ch"><div class="ct">📍 Fahrzeuge & Maschinen</div><div class="cs">Geocapture GPS</div></div>
+      <div class="cb" id="fahr-body"><div style="color:var(--text3);font-size:12px">⏳ Lade GPS...</div></div>
     </div>
 
   </div>
 </div>
 
+<!-- FOOTER -->
 <div class="footer">
-  <div class="fl"><div class="fdot loading" id="api-dot"></div><span id="api-status">Verbinde...</span><span>·</span><span>Geocapture · Excel KW26 · Open-Meteo</span></div>
+  <div class="fl"><div class="fdot loading" id="api-dot"></div><span id="api-status">Verbinde...</span><span>·</span><span>Geocapture · Excel KW26 · Open-Meteo Vaihingen</span></div>
   <div class="fr" id="last-update">Stand: –</div>
 </div>
 
@@ -189,15 +215,11 @@ function getTodayKey(){return['So','Mo','Di','Mi','Do','Fr','Sa'][new Date().get
 function renderTeams(){
   const day=getTodayKey();let html='';let haKran=false;
   TEAM_CFG.forEach(tc=>{
-    const tn=tc.n;
-    const crew=EXCEL['T'+tn+'_Crew_'+day]||'';
-    const auf=EXCEL['T'+tn+'_Aufgabe_'+day]||'';
-    const bs=EXCEL['T'+tn+'_Baustelle_'+day]||'\u2013';
-    const sh=EXCEL['T'+tn+'_Sonder_'+day]||'';
+    const tn=tc.n;const crew=EXCEL['T'+tn+'_Crew_'+day]||'';const auf=EXCEL['T'+tn+'_Aufgabe_'+day]||'';const bs=EXCEL['T'+tn+'_Baustelle_'+day]||'\u2013';const sh=EXCEL['T'+tn+'_Sonder_'+day]||'';
     if(sh.toLowerCase().includes('kran')||auf.toLowerCase().includes('kran'))haKran=true;
     const aufgaben=auf.split(/[,;\n]/).map(s=>s.trim()).filter(Boolean);
     const vaInfo=Object.values(VA_MAP).find(v=>v.name.includes(tc.va))||null;
-    html+='<div class="tb"><div class="th"><div class="tav" style="background:'+tc.bg+'">'+tc.label+'</div><div><div class="tn">'+(vaInfo?vaInfo.name:'Team '+tn)+(crew?' <span style="font-size:12px;font-weight:500;color:var(--text3)">'+crew+'</span>':'')+'</div><div class="tc">Team '+tn+'</div></div></div><div class="tsite">\ud83d\udccd '+bs+'</div><div class="tl">'+aufgaben.map((a,i)=>'<div class="ti"><span class="tin">'+(i+1)+'</span>'+a+'</div>').join('')+'</div>'+(sh?'<div class="stag">\u26a0 '+sh+'</div>':'')+'</div>';
+    html+='<div class="tb"><div class="th"><div class="tav" style="background:'+tc.bg+'">'+tc.label+'</div><div><div class="tn">'+(vaInfo?vaInfo.name:'Team '+tn)+(crew?' <span style="font-size:11px;font-weight:500;color:var(--text3)">'+crew+'</span>':'')+'</div><div class="tc">Team '+tn+'</div></div></div><div class="tsite">\ud83d\udccd '+bs+'</div><div class="tl">'+aufgaben.map((a,i)=>'<div class="ti"><span class="tin">'+(i+1)+'</span>'+a+'</div>').join('')+'</div>'+(sh?'<div class="stag">\u26a0 '+sh+'</div>':'')+'</div>';
   });
   document.getElementById('teams-body').innerHTML=html;
   if(haKran)document.getElementById('kran-hinweis').style.display='flex';
@@ -209,7 +231,12 @@ function renderTeams(){
 
 async function loadWeather(){
   try{const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=48.93&longitude=9.00&current=temperature_2m,precipitation,windspeed_10m,uv_index&timezone=Europe/Berlin');const d=await r.json();const c=d.current;const t=Math.round(c.temperature_2m);const rain=c.precipitation;const wind=Math.round(c.windspeed_10m);const uv=Math.round(c.uv_index||0);
-  document.getElementById('wx-t').textContent=t+' \u00b0C';document.getElementById('wx-t').style.color=t>=32?'#C0392B':t>=26?'#C17A00':'#1A1A1A';document.getElementById('wx-ts').textContent=t>=32?'sehr hei\u00df!':t>=26?'warm':'angenehm';document.getElementById('wx-r').textContent=rain+' mm';document.getElementById('wx-rs').textContent=rain===0?'kein Regen':'Regen';document.getElementById('wx-w').textContent=wind+' km/h';document.getElementById('wx-ws').textContent=wind<20?'leicht':wind<40?'m\u00e4\u00dfig':'stark';document.getElementById('wx-u').textContent=uv+' \u00b7 '+(uv>=8?'sehr hoch':uv>=6?'hoch':'ok');document.getElementById('wx-u').style.color=uv>=8?'#C0392B':uv>=6?'#C17A00':'#1A1A1A';document.getElementById('wx-us').textContent=uv>=6?'Sonnenschutz!':'';document.getElementById('wx-time').textContent='live'}catch(e){}}
+  document.getElementById('wx-t').textContent=t+' \u00b0C';document.getElementById('wx-t').style.color=t>=32?'#C0392B':t>=26?'#C17A00':'#1A1A1A';document.getElementById('wx-ts').textContent=t>=32?'sehr hei\u00df!':t>=26?'warm':'angenehm';
+  document.getElementById('wx-r').textContent=rain+' mm';document.getElementById('wx-rs').textContent=rain===0?'kein Regen':'Regen';
+  document.getElementById('wx-w').textContent=wind+' km/h';document.getElementById('wx-ws').textContent=wind<20?'leicht':wind<40?'m\u00e4\u00dfig':'stark';
+  document.getElementById('wx-u').textContent=uv+'';document.getElementById('wx-u').style.color=uv>=8?'#C0392B':uv>=6?'#C17A00':'#1A1A1A';document.getElementById('wx-us').textContent=uv>=8?'sehr hoch':uv>=6?'hoch \u2013 Schutz!':'ok';
+  document.getElementById('wx-time').textContent='live \u00b7 Open-Meteo';
+  if(t>=30){document.getElementById('alertbar').className='alertbar alert-hitze'}}catch(e){}}
 
 async function gcFetch(ep){const r=await fetch(GC_BASE+ep+(ep.includes('?')?'&':'?')+'apitoken='+GC_KEY);if(!r.ok)throw new Error(r.status);return r.json()}
 
@@ -232,17 +259,14 @@ async function loadMitarbeiter(){
   const now=new Date();document.getElementById('last-update').textContent='Stand: '+String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0')+' Uhr';
 }
 
-function renderKachel(cardId, pfId, ptId, bodyId, ein){
-  const vas=Object.entries(VA_MAP);
-  const done=vas.filter(([k])=>ein.has(k)).length;
+function renderKachel(cardId,pfId,ptId,bodyId,ein){
+  const vas=Object.entries(VA_MAP);const done=vas.filter(([k])=>ein.has(k)).length;
   document.getElementById(pfId).style.width=Math.round(done/vas.length*100)+'%';
   document.getElementById(ptId).textContent=done+' von '+vas.length;
-  let html='';
-  vas.forEach(([k,v])=>{const ok=ein.has(k);html+='<div class="vr"><div class="vl"><div class="vav" style="background:'+v.bg+'">'+k+'</div><div><div class="vn">'+v.name+'</div><div class="vt">Vorarbeiter '+v.team+'</div></div></div><div style="display:flex;align-items:center;gap:7px"><div class="sp '+(ok?'sd':'so')+'">'+(ok?'\u2713 Eingereicht':'\u23f3 Fehlt')+'</div><div class="vtime">'+(ok?'gestern':'–')+'</div></div></div>'});
+  let html='';vas.forEach(([k,v])=>{const ok=ein.has(k);html+='<div class="vr"><div class="vl"><div class="vav" style="background:'+v.bg+'">'+k+'</div><div><div class="vn">'+v.name+'</div><div class="vt">'+v.team+'</div></div></div><div class="sp '+(ok?'sd':'so')+'">'+(ok?'\u2713 Eingereicht':'\u26a0 Fehlt')+'</div></div>'});
   document.getElementById(bodyId).innerHTML=html;
   const card=document.getElementById(cardId);
-  if(done===vas.length){card.classList.remove('bk-red');card.classList.add('bk-green')}
-  else{card.classList.remove('bk-green');card.classList.add('bk-red')}
+  if(done===vas.length){card.classList.remove('bk-red');card.classList.add('bk-green')}else{card.classList.remove('bk-green');card.classList.add('bk-red')}
 }
 
 async function loadBerichte(){
@@ -250,25 +274,20 @@ async function loadBerichte(){
     const gestern=new Date();gestern.setDate(gestern.getDate()-1);const gDate=gestern.toISOString().split('T')[0];
     const forms=await gcFetch('/forms/?date_from='+gDate+'&date_to='+gDate);
     const fList=Array.isArray(forms)?forms:(forms.results||[]);
-
-    const einBtb=new Set();
-    const einRap=new Set();
-
+    const einBtb=new Set();const einRap=new Set();
     fList.forEach(f=>{
       const name=(f.employee_name||f.created_by||'').toLowerCase();
       const typ=(f.form_type||f.type||f.name||f.title||'').toLowerCase();
-      const isBtb=typ.includes('bautages')||typ.includes('baubericht')||typ.includes('tagesbericht');
-      const isRap=typ.includes('rapport')||typ.includes('rapporte');
+      const isBtb=typ.includes('bautages')||typ.includes('tagesbericht')||typ.includes('baubericht');
+      const isRap=typ.includes('rapport');
       Object.entries(VA_MAP).forEach(([k,v])=>{
         if(name.includes(v.name.split(' ')[1].toLowerCase())){
-          if(isBtb) einBtb.add(k);
-          if(isRap) einRap.add(k);
-          // Falls kein Typ erkennbar, beide setzen
+          if(isBtb)einBtb.add(k);
+          if(isRap)einRap.add(k);
           if(!isBtb&&!isRap){einBtb.add(k);einRap.add(k);}
         }
       });
     });
-
     renderKachel('bc-btb','pf-btb','pt-btb','body-btb',einBtb);
     renderKachel('bc-rap','pf-rap','pt-rap','body-rap',einRap);
   }catch(e){
@@ -277,10 +296,15 @@ async function loadBerichte(){
   }
 }
 
+async function loadFahrzeuge(){
+  try{const v=await gcFetch('/vehicles/');const vList=Array.isArray(v)?v:(v.results||[]);let html='';vList.slice(0,5).forEach(v=>{const pos=v.last_position;html+='<div class="ma"><div style="font-size:18px;width:30px;text-align:center">&#128667;</div><div style="flex:1"><div class="mn">'+(v.name||v.license_plate||'Fahrzeug')+'</div><div class="mt">'+(pos?(pos.address||pos.street||'bekannt'):'kein GPS')+'</div></div><div style="font-size:11px;font-weight:700;color:'+(pos?'var(--teal)':'var(--text3)')+'">'+(pos?'\u25cf aktiv':'\u25cb')+'</div></div>'});document.getElementById('fahr-body').innerHTML=html||'<div style="color:var(--text3);font-size:12px">Keine Fahrzeuge</div>'}
+  catch(e){document.getElementById('fahr-body').innerHTML='<div style="color:var(--text3);font-size:12px">GPS nicht verf\u00fcgbar</div>'}
+}
+
 async function start(){
   renderTeams();
-  await Promise.all([loadWeather(),loadMitarbeiter().then(()=>loadBerichte())]);
-  setInterval(()=>{loadWeather();loadMitarbeiter().then(()=>loadBerichte())},3600000);
+  await Promise.all([loadWeather(),loadMitarbeiter().then(()=>loadBerichte()),loadFahrzeuge()]);
+  setInterval(()=>{loadWeather();loadMitarbeiter().then(()=>loadBerichte());loadFahrzeuge()},3600000);
 }
 window.addEventListener('load',start);
 </script></body></html>
