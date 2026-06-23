@@ -4,34 +4,42 @@
 html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-family:var(--font);overflow:hidden}
 .screen{display:grid;grid-template-rows:auto auto auto 1fr auto;height:100vh}
 
-/* TOPBAR - kompakt */
+/* TOPBAR */
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 24px 9px;border-bottom:3px solid var(--teal);background:#fff}
 .brand{display:flex;align-items:center;gap:10px}
 .brand-dot{width:10px;height:10px;border-radius:50%;background:var(--teal);animation:pulse 3s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-.brand-name{font-size:18px;font-weight:700;color:var(--teal-d)}
+.brand-name{font-size:19px;font-weight:700;color:var(--teal-d)}
 .brand-sub{font-size:11px;color:var(--text3);margin-top:1px;font-weight:500}
-.clock{font-size:34px;font-weight:700;color:var(--teal-d);font-variant-numeric:tabular-nums;text-align:right;line-height:1}
+.clock{font-size:36px;font-weight:700;color:var(--teal-d);font-variant-numeric:tabular-nums;text-align:right;line-height:1}
 .topdate{font-size:12px;color:var(--text3);margin-top:2px;text-align:right;font-weight:500}
 
-/* WETTER BAND - sehr kompakt */
-.wetterband{display:flex;align-items:center;justify-content:space-between;padding:6px 24px;background:var(--teal-bg);border-bottom:1px solid var(--teal-bg2)}
-.wb-title{font-size:12px;font-weight:700;color:var(--teal-d);white-space:nowrap}
-.wb-items{display:flex;align-items:center;gap:20px;flex:1;justify-content:center}
-.wb-item{display:flex;align-items:center;gap:6px}
-.wb-label{font-size:10px;color:var(--text3);font-weight:600;text-transform:uppercase}
-.wb-val{font-size:15px;font-weight:700;color:var(--text)}
-.wb-sub{font-size:10px;color:var(--text3)}
-.wb-div{width:1px;height:22px;background:var(--border)}
-.wb-src{font-size:10px;color:var(--text3);white-space:nowrap}
+/* WETTER + LIEFERUNGEN KOMBINIERTES BAND */
+.infoband{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:0;background:var(--teal-bg);border-bottom:2px solid var(--teal-bg2)}
+.wb-section{display:flex;align-items:center;gap:18px;padding:7px 24px 7px 20px;border-right:2px solid var(--teal-bg2)}
+.wb-title{font-size:11px;font-weight:700;color:var(--teal-d);white-space:nowrap;margin-right:4px}
+.wb-item{display:flex;flex-direction:column;align-items:center}
+.wb-label{font-size:9px;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.wb-val{font-size:15px;font-weight:700;line-height:1.1}
+.wb-sub{font-size:9px;color:var(--text3)}
+.wb-div{width:1px;height:20px;background:var(--teal-bg2)}
+.lief-section{display:flex;align-items:center;gap:14px;padding:7px 20px;flex:1}
+.lief-title{font-size:11px;font-weight:700;color:var(--teal-d);white-space:nowrap}
+.lief-items{display:flex;align-items:center;gap:16px;flex:1}
+.lief-item{display:flex;align-items:center;gap:6px;font-size:12px}
+.lief-time{font-weight:700;color:var(--amber)}
+.lief-what{color:var(--text2);font-weight:500}
+.lief-site{color:var(--text3);font-size:10px}
+.lief-none{font-size:12px;color:var(--text3);font-weight:500}
+.wb-src{font-size:9px;color:var(--text3);white-space:nowrap;padding-right:20px}
 
 /* ALERT */
 .alertbar{padding:7px 24px;font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px;border-bottom:2px solid}
 .alert-hitze{background:var(--amber-bg);border-color:var(--amber);color:var(--amber)}
 .alert-info{background:var(--teal-bg);border-color:var(--teal);color:var(--teal-d)}
 
-/* 4-SPALTEN GRID */
-.main{display:grid;grid-template-columns:1.15fr 0.9fr 0.85fr 0.85fr;gap:10px;padding:10px 24px;overflow:hidden}
+/* 4-SPALTEN MAIN */
+.main{display:grid;grid-template-columns:1.1fr 0.95fr 0.85fr 0.85fr;gap:10px;padding:10px 24px;overflow:hidden}
 
 /* CARDS */
 .card{background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
@@ -53,20 +61,12 @@ html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-fam
 .tin{font-size:9px;color:var(--text3);min-width:12px;font-weight:600}
 .stag{display:inline-flex;align-items:center;gap:3px;margin-top:3px;font-size:10px;padding:2px 7px;border-radius:20px;background:#EEF;color:#446;font-weight:600;border:1px solid #CCF}
 
-/* SICHERHEIT */
-.si{display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid var(--border)}
-.si:last-child{border-bottom:none}
-.sit{font-size:13px;font-weight:700;color:var(--text)}
-.sid{font-size:10px;color:var(--text3);margin-top:1px;line-height:1.35;font-weight:500}
-
-/* LIEFERUNGEN */
-.li{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--border)}
-.li:last-child{border-bottom:none}
-.lt{font-size:15px;font-weight:700;color:var(--amber);min-width:42px;font-variant-numeric:tabular-nums}
-.lbody{flex:1}.lw{font-size:12px;color:var(--text);font-weight:600}
-.ls{font-size:10px;color:var(--text3);margin-top:1px;font-weight:500}
-.ltag{font-size:9px;padding:1px 6px;border-radius:20px;font-weight:700}
-.lok{background:var(--teal-bg2);color:var(--teal-d);border:1px solid var(--teal)}
+/* SICHERHEIT - horizontal kompakt */
+.si-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.si{display:flex;align-items:flex-start;gap:6px;padding:6px 8px;background:var(--bg3);border-radius:7px;border:1px solid var(--border)}
+.si.full{grid-column:1/-1}
+.sit{font-size:12px;font-weight:700;color:var(--text)}
+.sid{font-size:10px;color:var(--text3);margin-top:1px;line-height:1.3;font-weight:500}
 
 /* MITARBEITER */
 .ma{display:flex;align-items:center;gap:7px;padding:5px 0;border-bottom:1px solid var(--border)}
@@ -77,7 +77,7 @@ html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-fam
 .mbadge{font-size:10px;padding:1px 6px;border-radius:20px;margin-left:auto;white-space:nowrap;font-weight:700}
 
 /* BERICHT KACHELN */
-.bk{background:var(--bg2);border:2px solid var(--red);border-radius:10px;overflow:hidden;transition:border-color .5s;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.bk{background:var(--bg2);border:2px solid var(--red);border-radius:10px;overflow:hidden;transition:border-color .5s;box-shadow:0 1px 4px rgba(0,0,0,0.06);display:flex;flex-direction:column}
 .bk-red .bkh{background:var(--red-bg)}
 .bk-green .bkh{background:var(--teal-bg)}
 .bkh{padding:7px 12px 6px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;transition:background .5s}
@@ -88,16 +88,16 @@ html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-fam
 .pb{width:50px;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
 .pf{height:100%;background:var(--teal);border-radius:2px;transition:width .8s ease}
 .pt{font-size:10px;color:var(--text3);font-weight:600}
-.vr{display:flex;align-items:center;justify-content:space-between;padding:6px 12px;border-bottom:1px solid var(--border)}
+.vr{display:flex;align-items:center;justify-content:space-between;padding:7px 12px;border-bottom:1px solid var(--border)}
 .vr:last-child{border-bottom:none}
 .vl{display:flex;align-items:center;gap:7px}
-.vav{width:26px;height:26px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff}
-.vn{font-size:12px;font-weight:600;color:var(--text)}
+.vav{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff}
+.vn{font-size:13px;font-weight:600;color:var(--text)}
 .vt{font-size:10px;color:var(--text3)}
-.sp{display:flex;align-items:center;gap:3px;font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px}
+.sp{display:flex;align-items:center;gap:3px;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px}
 .sd{background:var(--teal-bg2);color:var(--teal-d);border:1px solid var(--teal)}
 .so{background:var(--red-bg);color:var(--red);border:1px solid var(--red)}
-.bk-foot{padding:4px 12px;border-top:1px solid var(--border);font-size:9px;color:var(--text3);font-weight:500;background:var(--bg3)}
+.bk-foot{padding:4px 12px;border-top:1px solid var(--border);font-size:9px;color:var(--text3);font-weight:500;background:var(--bg3);flex-shrink:0}
 
 /* FOOTER */
 .footer{padding:6px 24px;border-top:1.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:#fff}
@@ -109,15 +109,17 @@ html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-fam
 </style></head><body>
 <div class="screen">
 
+<!-- TOPBAR -->
 <div class="topbar">
   <div class="brand"><div class="brand-dot"></div><div><div class="brand-name">Daniel Schieler Gartengestaltung</div><div class="brand-sub">Morgen-Briefing · Baustelle · KW 26</div></div></div>
   <div><div class="clock" id="clk">--:--</div><div class="topdate" id="topdate"></div></div>
 </div>
 
-<div class="wetterband">
-  <div class="wb-title">🌤 Wetter Vaihingen</div>
-  <div class="wb-items">
-    <div class="wb-item"><div class="wb-label">Temp.</div><div class="wb-val" id="wx-t">–</div><div class="wb-sub" id="wx-ts"></div></div>
+<!-- WETTER + LIEFERUNGEN BAND -->
+<div class="infoband">
+  <div class="wb-section">
+    <div class="wb-title">🌤 Vaihingen</div>
+    <div class="wb-item"><div class="wb-label">Temp.</div><div class="wb-val" id="wx-t" style="color:#1A1A1A">–</div><div class="wb-sub" id="wx-ts"></div></div>
     <div class="wb-div"></div>
     <div class="wb-item"><div class="wb-label">Regen</div><div class="wb-val" id="wx-r">–</div><div class="wb-sub" id="wx-rs"></div></div>
     <div class="wb-div"></div>
@@ -125,11 +127,17 @@ html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-fam
     <div class="wb-div"></div>
     <div class="wb-item"><div class="wb-label">UV</div><div class="wb-val" id="wx-u">–</div><div class="wb-sub" id="wx-us"></div></div>
   </div>
+  <div class="lief-section">
+    <div class="lief-title">🚚 Lieferungen heute</div>
+    <div class="lief-items" id="lief-band"><div class="lief-none">Keine Lieferungen eingetragen</div></div>
+  </div>
   <div class="wb-src" id="wx-time">live · Open-Meteo</div>
 </div>
 
+<!-- ALERT -->
 <div class="alertbar alert-hitze" id="alertbar"><span>⚠</span><span id="alerttext">Hinweise werden geladen...</span></div>
 
+<!-- MAIN 4 SPALTEN -->
 <div class="main">
 
   <!-- SPALTE 1: Aufgaben + Sicherheit -->
@@ -139,57 +147,52 @@ html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-fam
       <div class="cb" id="teams-body"></div>
     </div>
     <div class="card">
-      <div class="ch"><div class="ct">⛑ Sicherheit</div></div>
+      <div class="ch"><div class="ct">⛑ Sicherheitshinweise</div></div>
       <div class="cb">
-        <div class="si"><div style="font-size:16px;flex-shrink:0;margin-top:1px">💧</div><div><div class="sit">2–3 Liter trinken</div><div class="sid">Regelmäßig Pausen. Wasser im Transporter.</div></div></div>
-        <div class="si"><div style="font-size:16px;flex-shrink:0;margin-top:1px">⛑</div><div><div class="sit">Schutzausrüstung</div><div class="sid">Helm, Handschuhe, Sicherheitsschuhe.</div></div></div>
-        <div class="si" id="kran-hinweis" style="display:none"><div style="font-size:16px;flex-shrink:0;margin-top:1px">🏗</div><div><div class="sit">Kran — Einweisung Pflicht</div><div class="sid">Nur eingewiesene MA im Schwenkbereich.</div></div></div>
+        <div class="si-grid">
+          <div class="si"><div style="font-size:16px;flex-shrink:0">💧</div><div><div class="sit">2–3 Liter trinken</div><div class="sid">Pausen einlegen. Wasser im Transporter.</div></div></div>
+          <div class="si"><div style="font-size:16px;flex-shrink:0">⛑</div><div><div class="sit">Schutzausrüstung</div><div class="sid">Helm, Handschuhe, Sicherheitsschuhe.</div></div></div>
+          <div class="si full" id="kran-hinweis" style="display:none"><div style="font-size:16px;flex-shrink:0">🏗</div><div><div class="sit">Kran diese Woche — Einweisung Pflicht</div><div class="sid">Nur eingewiesene MA im Schwenkbereich. Vorarbeiter koordiniert.</div></div></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- SPALTE 2: Mitarbeiter + Lieferungen -->
+  <!-- SPALTE 2: Mitarbeiter -->
   <div style="display:flex;flex-direction:column;gap:8px">
     <div class="card" style="flex:1">
       <div class="ch"><div class="ct">👷 Mitarbeiter heute</div><div class="cs">Geocapture</div></div>
       <div class="cb" id="ma-body"><div style="color:var(--text3);font-size:11px">⏳ Lade...</div></div>
     </div>
-    <div class="card">
-      <div class="ch"><div class="ct">🚚 Lieferungen</div><div class="cs">Wochenplan</div></div>
-      <div class="cb" id="liefer-body"><div style="color:var(--text3);font-size:11px;font-weight:500">Keine Lieferungen heute</div></div>
-    </div>
-    <div class="card">
-      <div class="ch"><div class="ct">📍 Fahrzeuge</div><div class="cs">Geocapture GPS</div></div>
-      <div class="cb" id="fahr-body"><div style="color:var(--text3);font-size:11px">⏳ Lade GPS...</div></div>
-    </div>
   </div>
 
   <!-- SPALTE 3: Bautagesbericht -->
-  <div style="display:flex;flex-direction:column;gap:8px">
+  <div style="display:flex;flex-direction:column">
     <div class="bk bk-red" id="bc-btb" style="flex:1">
       <div class="bkh">
-        <div class="bkt">📄 Bautagesbericht</div>
+        <div class="bkt">📄 Bautagesbericht — gestern</div>
         <div class="pw"><div class="pb"><div class="pf" id="pf-btb" style="width:0%"></div></div><div class="pt" id="pt-btb">0/3</div></div>
       </div>
-      <div id="body-btb"><div style="padding:8px 12px;font-size:11px;color:var(--text3)">⏳ Lade...</div></div>
-      <div class="bk-foot">Gestern · Pflicht täglich</div>
+      <div id="body-btb" style="flex:1"><div style="padding:10px 12px;font-size:12px;color:var(--text3)">⏳ Lade Geocapture...</div></div>
+      <div class="bk-foot">Pflicht täglich · Status vom Vortag · Geocapture</div>
     </div>
   </div>
 
   <!-- SPALTE 4: Tagesrapport -->
-  <div style="display:flex;flex-direction:column;gap:8px">
+  <div style="display:flex;flex-direction:column">
     <div class="bk bk-red" id="bc-rap" style="flex:1">
       <div class="bkh">
-        <div class="bkt">📝 Tagesrapport</div>
+        <div class="bkt">📝 Tagesrapport — gestern</div>
         <div class="pw"><div class="pb"><div class="pf" id="pf-rap" style="width:0%"></div></div><div class="pt" id="pt-rap">0/3</div></div>
       </div>
-      <div id="body-rap"><div style="padding:8px 12px;font-size:11px;color:var(--text3)">⏳ Lade...</div></div>
-      <div class="bk-foot">Gestern · Pflicht täglich</div>
+      <div id="body-rap" style="flex:1"><div style="padding:10px 12px;font-size:12px;color:var(--text3)">⏳ Lade Geocapture...</div></div>
+      <div class="bk-foot">Pflicht täglich · Status vom Vortag · Geocapture</div>
     </div>
   </div>
 
 </div>
 
+<!-- FOOTER -->
 <div class="footer">
   <div class="fl"><div class="fdot loading" id="api-dot"></div><span id="api-status">Verbinde...</span><span>·</span><span>Geocapture · Excel KW26 · Open-Meteo Vaihingen</span></div>
   <div class="fr" id="last-update">Stand: –</div>
@@ -223,19 +226,20 @@ function renderTeams(){
     html+='<div class="tb"><div class="th"><div class="tav" style="background:'+tc.bg+'">'+tc.label+'</div><div><div class="tn">'+(vaInfo?vaInfo.name:'Team '+tn)+(crew?' <span style="font-size:10px;font-weight:500;color:var(--text3)">'+crew+'</span>':'')+'</div><div class="tc">Team '+tn+'</div></div></div><div class="tsite">\ud83d\udccd '+bs+'</div><div class="tl">'+aufgaben.map((a,i)=>'<div class="ti"><span class="tin">'+(i+1)+'</span>'+a+'</div>').join('')+'</div>'+(sh?'<div class="stag">\u26a0 '+sh+'</div>':'')+'</div>';
   });
   document.getElementById('teams-body').innerHTML=html;
-  if(haKran)document.getElementById('kran-hinweis').style.display='flex';
+  if(haKran){const kh=document.getElementById('kran-hinweis');if(kh)kh.style.display='flex'}
   const info=EXCEL['Wichtige_Infos_'+day]||'';
   if(info){document.getElementById('alertbar').className='alertbar alert-hitze';document.getElementById('alerttext').textContent='\u26a0 '+info}
+  // Lieferungen im Band
   const liefs=TEAM_CFG.map(tc=>{const mat=EXCEL['T'+tc.n+'_Material_'+day]||'';const bs=EXCEL['T'+tc.n+'_Baustelle_'+day]||'';return mat&&!mat.toLowerCase().includes('kran')?{text:mat,site:bs}:null}).filter(Boolean);
-  if(liefs.length){let lh='';liefs.forEach(l=>{const m=l.text.match(/^(\d{1,2}[:.]\d{2})\s*(.*)/);lh+='<div class="li"><div class="lt">'+(m?m[1]:'\u2013')+'</div><div class="lbody"><div class="lw">'+(m?m[2]:l.text)+'</div><div class="ls">'+l.site+'</div></div><div class="ltag lok">ok</div></div>'});document.getElementById('liefer-body').innerHTML=lh}
+  if(liefs.length){let lh='';liefs.forEach(l=>{const m=l.text.match(/^(\d{1,2}[:.]\d{2})\s*(.*)/);lh+='<div class="lief-item"><span class="lief-time">'+(m?m[1]:'\u2013')+'</span><span class="lief-what">'+(m?m[2]:l.text)+'</span><span class="lief-site">· '+l.site+'</span></div>'});document.getElementById('lief-band').innerHTML=lh}
 }
 
 async function loadWeather(){
   try{const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=48.93&longitude=9.00&current=temperature_2m,precipitation,windspeed_10m,uv_index&timezone=Europe/Berlin');const d=await r.json();const c=d.current;const t=Math.round(c.temperature_2m);const rain=c.precipitation;const wind=Math.round(c.windspeed_10m);const uv=Math.round(c.uv_index||0);
-  document.getElementById('wx-t').textContent=t+'\u00b0C';document.getElementById('wx-t').style.color=t>=32?'#C0392B':t>=26?'#C17A00':'#1A1A1A';document.getElementById('wx-ts').textContent=t>=32?'sehr hei\u00df':t>=26?'warm':'ok';
-  document.getElementById('wx-r').textContent=rain+'mm';document.getElementById('wx-rs').textContent=rain===0?'kein Regen':'Regen';
-  document.getElementById('wx-w').textContent=wind+'km/h';document.getElementById('wx-ws').textContent=wind<20?'leicht':wind<40?'m\u00e4\u00dfig':'stark';
-  document.getElementById('wx-u').textContent=uv+'';document.getElementById('wx-u').style.color=uv>=8?'#C0392B':uv>=6?'#C17A00':'#1A1A1A';document.getElementById('wx-us').textContent=uv>=8?'sehr hoch':uv>=6?'hoch':uv>=3?'mittel':'niedrig';}catch(e){}}
+  const wt=document.getElementById('wx-t');wt.textContent=t+'\u00b0C';wt.style.color=t>=32?'#C0392B':t>=26?'#C17A00':'#1A1A1A';document.getElementById('wx-ts').textContent=t>=32?'sehr hei\u00df':t>=26?'warm':'angenehm';
+  document.getElementById('wx-r').textContent=rain+'mm';document.getElementById('wx-rs').textContent=rain===0?'trocken':'Regen';
+  document.getElementById('wx-w').textContent=wind+'km/h';document.getElementById('wx-ws').textContent=wind<20?'leicht':'m\u00e4\u00dfig';
+  const wu=document.getElementById('wx-u');wu.textContent=uv+'';wu.style.color=uv>=8?'#C0392B':uv>=6?'#C17A00':'#1A1A1A';document.getElementById('wx-us').textContent=uv>=8?'sehr hoch':uv>=6?'hoch':uv>=3?'mittel':'niedrig';}catch(e){}}
 
 async function gcFetch(ep){const r=await fetch(GC_BASE+ep+(ep.includes('?')?'&':'?')+'apitoken='+GC_KEY);if(!r.ok)throw new Error(r.status);return r.json()}
 
@@ -262,7 +266,7 @@ function renderKachel(cardId,pfId,ptId,bodyId,ein){
   const vas=Object.entries(VA_MAP);const done=vas.filter(([k])=>ein.has(k)).length;
   document.getElementById(pfId).style.width=Math.round(done/vas.length*100)+'%';
   document.getElementById(ptId).textContent=done+'/'+vas.length;
-  let html='';vas.forEach(([k,v])=>{const ok=ein.has(k);html+='<div class="vr"><div class="vl"><div class="vav" style="background:'+v.bg+'">'+k+'</div><div><div class="vn">'+v.name+'</div><div class="vt">'+v.team+'</div></div></div><div class="sp '+(ok?'sd':'so')+'">'+(ok?'\u2713 OK':'\u26a0 Fehlt')+'</div></div>'});
+  let html='';vas.forEach(([k,v])=>{const ok=ein.has(k);html+='<div class="vr"><div class="vl"><div class="vav" style="background:'+v.bg+'">'+k+'</div><div><div class="vn">'+v.name+'</div><div class="vt">'+v.team+'</div></div></div><div class="sp '+(ok?'sd':'so')+'">'+(ok?'\u2713 Eingereicht':'\u26a0 Fehlt')+'</div></div>'});
   document.getElementById(bodyId).innerHTML=html;
   const card=document.getElementById(cardId);
   if(done===vas.length){card.classList.remove('bk-red');card.classList.add('bk-green')}else{card.classList.remove('bk-green');card.classList.add('bk-red')}
@@ -291,15 +295,10 @@ async function loadBerichte(){
   }catch(e){renderKachel('bc-btb','pf-btb','pt-btb','body-btb',new Set());renderKachel('bc-rap','pf-rap','pt-rap','body-rap',new Set())}
 }
 
-async function loadFahrzeuge(){
-  try{const v=await gcFetch('/vehicles/');const vList=Array.isArray(v)?v:(v.results||[]);let html='';vList.slice(0,4).forEach(v=>{const pos=v.last_position;html+='<div class="ma"><div style="font-size:16px;width:28px;text-align:center">&#128667;</div><div style="flex:1"><div class="mn">'+(v.name||v.license_plate||'Fzg.')+'</div><div class="mt">'+(pos?(pos.address||pos.street||'bekannt'):'kein GPS')+'</div></div><div style="font-size:10px;font-weight:700;color:'+(pos?'var(--teal)':'var(--text3)')+'">'+(pos?'\u25cf':'\u25cb')+'</div></div>'});document.getElementById('fahr-body').innerHTML=html||'<div style="color:var(--text3);font-size:11px">Keine Fahrzeuge</div>'}
-  catch(e){document.getElementById('fahr-body').innerHTML='<div style="color:var(--text3);font-size:11px">GPS n.v.</div>'}
-}
-
 async function start(){
   renderTeams();
-  await Promise.all([loadWeather(),loadMitarbeiter().then(()=>loadBerichte()),loadFahrzeuge()]);
-  setInterval(()=>{loadWeather();loadMitarbeiter().then(()=>loadBerichte());loadFahrzeuge()},3600000);
+  await Promise.all([loadWeather(),loadMitarbeiter().then(()=>loadBerichte())]);
+  setInterval(()=>{loadWeather();loadMitarbeiter().then(()=>loadBerichte())},3600000);
 }
 window.addEventListener('load',start);
 </script></body></html>
