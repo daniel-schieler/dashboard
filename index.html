@@ -37,9 +37,10 @@ html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-fam
 .alertbar{padding:7px 24px;font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px;border-bottom:2px solid}
 .alert-hitze{background:var(--amber-bg);border-color:var(--amber);color:var(--amber)}
 .alert-info{background:var(--teal-bg);border-color:var(--teal);color:var(--teal-d)}
+.alert-urgent{background:var(--red-bg);border-color:var(--red);color:var(--red)}
 
 /* 4-SPALTEN MAIN */
-.main{display:grid;grid-template-columns:1.1fr 0.95fr 0.85fr 0.85fr;gap:10px;padding:10px 24px;overflow:hidden}
+.main{display:grid;grid-template-columns:1.3fr 1fr;gap:10px;padding:10px 24px;overflow:hidden}
 
 /* CARDS */
 .card{background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
@@ -68,6 +69,10 @@ html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-fam
 .sit{font-size:12px;font-weight:700;color:var(--text)}
 .sid{font-size:10px;color:var(--text3);margin-top:1px;line-height:1.3;font-weight:500}
 
+.notiz-item{padding:6px 10px;border-radius:7px;font-size:12px;font-weight:600;margin-bottom:6px;line-height:1.3}
+.notiz-item:last-child{margin-bottom:0}
+.notiz-empty{font-size:11px;color:var(--text3)}
+
 /* MITARBEITER */
 .ma{display:flex;align-items:center;gap:7px;padding:5px 0;border-bottom:1px solid var(--border)}
 .ma:last-child{border-bottom:none}
@@ -75,29 +80,11 @@ html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-fam
 .mn{font-size:12px;font-weight:600;color:var(--text)}
 .mt{font-size:10px;color:var(--text3);font-weight:500}
 .mbadge{font-size:10px;padding:1px 6px;border-radius:20px;margin-left:auto;white-space:nowrap;font-weight:700}
-
-/* BERICHT KACHELN */
-.bk{background:var(--bg2);border:2px solid var(--red);border-radius:10px;overflow:hidden;transition:border-color .5s;box-shadow:0 1px 4px rgba(0,0,0,0.06);display:flex;flex-direction:column}
-.bk-red .bkh{background:var(--red-bg)}
-.bk-green .bkh{background:var(--teal-bg)}
-.bkh{padding:7px 12px 6px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;transition:background .5s}
-.bkt{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
-.bk-red .bkt{color:var(--red)}
-.bk-green .bkt{color:var(--teal-d)}
-.pw{display:flex;align-items:center;gap:5px}
-.pb{width:50px;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
-.pf{height:100%;background:var(--teal);border-radius:2px;transition:width .8s ease}
-.pt{font-size:10px;color:var(--text3);font-weight:600}
-.vr{display:flex;align-items:center;justify-content:space-between;padding:7px 12px;border-bottom:1px solid var(--border)}
-.vr:last-child{border-bottom:none}
-.vl{display:flex;align-items:center;gap:7px}
-.vav{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff}
-.vn{font-size:13px;font-weight:600;color:var(--text)}
-.vt{font-size:10px;color:var(--text3)}
-.sp{display:flex;align-items:center;gap:3px;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px}
-.sd{background:var(--teal-bg2);color:var(--teal-d);border:1px solid var(--teal)}
-.so{background:var(--red-bg);color:var(--red);border:1px solid var(--red)}
-.bk-foot{padding:4px 12px;border-top:1px solid var(--border);font-size:9px;color:var(--text3);font-weight:500;background:var(--bg3);flex-shrink:0}
+.mw{display:flex;gap:2px;margin-top:4px}
+.mwd{width:15px;height:15px;border-radius:4px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:var(--text3)}
+.mwd-today{box-shadow:0 0 0 2px var(--teal-d)}
+.mw-legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;padding-top:6px;border-top:1px solid var(--border);font-size:9px;color:var(--text3)}
+.mw-legend i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:3px;vertical-align:middle;font-style:normal}
 
 /* FOOTER */
 .footer{padding:6px 24px;border-top:1.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:#fff}
@@ -111,27 +98,27 @@ html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-fam
 
 <!-- TOPBAR -->
 <div class="topbar">
-  <div class="brand"><div class="brand-dot"></div><div><div class="brand-name">Daniel Schieler Gartengestaltung</div><div class="brand-sub">Morgen-Briefing · Baustelle · KW 26</div></div></div>
-  <div><div class="clock" id="clk">--:--</div><div class="topdate" id="topdate"></div></div>
+<div class="brand"><div class="brand-dot"></div><div><div class="brand-name">Daniel Schieler Gartengestaltung</div><div class="brand-sub">Morgen-Briefing · Baustelle · <span id="kw-label">KW 28</span></div></div></div>
+<div><div class="clock" id="clk">--:--</div><div class="topdate" id="topdate"></div></div>
 </div>
 
 <!-- WETTER + LIEFERUNGEN BAND -->
 <div class="infoband">
-  <div class="wb-section">
-    <div class="wb-title">🌤 Vaihingen</div>
-    <div class="wb-item"><div class="wb-label">Temp.</div><div class="wb-val" id="wx-t" style="color:#1A1A1A">–</div><div class="wb-sub" id="wx-ts"></div></div>
-    <div class="wb-div"></div>
-    <div class="wb-item"><div class="wb-label">Regen</div><div class="wb-val" id="wx-r">–</div><div class="wb-sub" id="wx-rs"></div></div>
-    <div class="wb-div"></div>
-    <div class="wb-item"><div class="wb-label">Wind</div><div class="wb-val" id="wx-w">–</div><div class="wb-sub" id="wx-ws"></div></div>
-    <div class="wb-div"></div>
-    <div class="wb-item"><div class="wb-label">UV</div><div class="wb-val" id="wx-u">–</div><div class="wb-sub" id="wx-us"></div></div>
-  </div>
-  <div class="lief-section">
-    <div class="lief-title">🚚 Lieferungen heute</div>
-    <div class="lief-items" id="lief-band"><div class="lief-none">Keine Lieferungen eingetragen</div></div>
-  </div>
-  <div class="wb-src" id="wx-time">live · Open-Meteo</div>
+<div class="wb-section">
+<div class="wb-title">🌤 Vaihingen</div>
+<div class="wb-item"><div class="wb-label">Temp.</div><div class="wb-val" id="wx-t" style="color:#1A1A1A">–</div><div class="wb-sub" id="wx-ts"></div></div>
+<div class="wb-div"></div>
+<div class="wb-item"><div class="wb-label">Regen</div><div class="wb-val" id="wx-r">–</div><div class="wb-sub" id="wx-rs"></div></div>
+<div class="wb-div"></div>
+<div class="wb-item"><div class="wb-label">Wind</div><div class="wb-val" id="wx-w">–</div><div class="wb-sub" id="wx-ws"></div></div>
+<div class="wb-div"></div>
+<div class="wb-item"><div class="wb-label">UV</div><div class="wb-val" id="wx-u">–</div><div class="wb-sub" id="wx-us"></div></div>
+</div>
+<div class="lief-section">
+<div class="lief-title">🚚 Lieferungen heute</div>
+<div class="lief-items" id="lief-band"><div class="lief-none">Keine Lieferungen eingetragen</div></div>
+</div>
+<div class="wb-src" id="wx-time">live · Open-Meteo</div>
 </div>
 
 <!-- ALERT -->
@@ -140,165 +127,150 @@ html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-fam
 <!-- MAIN 4 SPALTEN -->
 <div class="main">
 
-  <!-- SPALTE 1: Aufgaben + Sicherheit -->
-  <div style="display:flex;flex-direction:column;gap:8px">
-    <div class="card" style="flex:1">
-      <div class="ch"><div class="ct">📋 Aufgaben heute</div><div class="cs">KW 26 · Excel</div></div>
-      <div class="cb" id="teams-body"></div>
-    </div>
-    <div class="card">
-      <div class="ch"><div class="ct">⛑ Sicherheitshinweise</div></div>
-      <div class="cb">
-        <div class="si-grid">
-          <div class="si"><div style="font-size:16px;flex-shrink:0">💧</div><div><div class="sit">2–3 Liter trinken</div><div class="sid">Pausen einlegen. Wasser im Transporter.</div></div></div>
-          <div class="si"><div style="font-size:16px;flex-shrink:0">⛑</div><div><div class="sit">Schutzausrüstung</div><div class="sid">Helm, Handschuhe, Sicherheitsschuhe.</div></div></div>
-          <div class="si full" id="kran-hinweis" style="display:none"><div style="font-size:16px;flex-shrink:0">🏗</div><div><div class="sit">Kran diese Woche — Einweisung Pflicht</div><div class="sid">Nur eingewiesene MA im Schwenkbereich. Vorarbeiter koordiniert.</div></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- SPALTE 1: Aufgaben + Sicherheit -->
+<div style="display:flex;flex-direction:column;gap:8px">
+<div class="card" style="flex:1">
+<div class="ch"><div class="ct">📋 Aufgaben heute</div><div class="cs"><span id="kw-label2">KW 28</span> · Excel</div></div>
+<div class="cb" id="teams-body"></div>
+</div>
+<div class="card">
+<div class="ch"><div class="ct">📌 Wichtige Notizen</div></div>
+<div class="cb" id="notizen-body"></div>
+</div>
+<div class="card">
+<div class="ch"><div class="ct">⛑ Sicherheitshinweise</div></div>
+<div class="cb">
+<div class="si-grid">
+<div class="si"><div style="font-size:16px;flex-shrink:0">💧</div><div><div class="sit">2–3 Liter trinken</div><div class="sid">Pausen einlegen. Wasser im Transporter.</div></div></div>
+<div class="si"><div style="font-size:16px;flex-shrink:0">⛑</div><div><div class="sit">Schutzausrüstung</div><div class="sid">Helm, Handschuhe, Sicherheitsschuhe.</div></div></div>
+<div class="si full" id="kran-hinweis" style="display:none"><div style="font-size:16px;flex-shrink:0">🏗</div><div><div class="sit">Kran diese Woche — Einweisung Pflicht</div><div class="sid">Nur eingewiesene MA im Schwenkbereich. Vorarbeiter koordiniert.</div></div></div>
+</div>
+</div>
+</div>
+</div>
 
-  <!-- SPALTE 2: Mitarbeiter -->
-  <div style="display:flex;flex-direction:column;gap:8px">
-    <div class="card" style="flex:1">
-      <div class="ch"><div class="ct">👷 Mitarbeiter heute</div><div class="cs">Geocapture</div></div>
-      <div class="cb" id="ma-body"><div style="color:var(--text3);font-size:11px">⏳ Lade...</div></div>
-    </div>
-  </div>
-
-  <!-- SPALTE 3: Bautagesbericht -->
-  <div style="display:flex;flex-direction:column">
-    <div class="bk bk-red" id="bc-btb" style="flex:1">
-      <div class="bkh">
-        <div class="bkt">📄 Bautagesbericht — gestern</div>
-        <div class="pw"><div class="pb"><div class="pf" id="pf-btb" style="width:0%"></div></div><div class="pt" id="pt-btb">0/3</div></div>
-      </div>
-      <div id="body-btb" style="flex:1"><div style="padding:10px 12px;font-size:12px;color:var(--text3)">⏳ Lade Geocapture...</div></div>
-      <div class="bk-foot">Pflicht täglich · Status vom Vortag · Geocapture</div>
-    </div>
-  </div>
-
-  <!-- SPALTE 4: Tagesrapport -->
-  <div style="display:flex;flex-direction:column">
-    <div class="bk bk-red" id="bc-rap" style="flex:1">
-      <div class="bkh">
-        <div class="bkt">📝 Tagesrapport — gestern</div>
-        <div class="pw"><div class="pb"><div class="pf" id="pf-rap" style="width:0%"></div></div><div class="pt" id="pt-rap">0/3</div></div>
-      </div>
-      <div id="body-rap" style="flex:1"><div style="padding:10px 12px;font-size:12px;color:var(--text3)">⏳ Lade Geocapture...</div></div>
-      <div class="bk-foot">Pflicht täglich · Status vom Vortag · Geocapture</div>
-    </div>
-  </div>
+<!-- SPALTE 2: Mitarbeiter -->
+<div style="display:flex;flex-direction:column;gap:8px">
+<div class="card" style="flex:1">
+<div class="ch"><div class="ct">👷 Mitarbeiter heute</div><div class="cs">Geocapture</div></div>
+<div class="cb" id="ma-body"><div style="color:var(--text3);font-size:11px">⏳ Lade...</div></div>
+</div>
+</div>
 
 </div>
 
 <!-- FOOTER -->
 <div class="footer">
-  <div class="fl"><div class="fdot loading" id="api-dot"></div><span id="api-status">Verbinde...</span><span>·</span><span>Geocapture · Excel KW26 · Open-Meteo Vaihingen</span></div>
-  <div class="fr" id="last-update">Stand: –</div>
+<div class="fl"><div class="fdot loading" id="api-dot"></div><span id="api-status">Verbinde...</span><span>·</span><span>Geocapture · Excel KW28 · Open-Meteo Vaihingen</span></div>
+<div class="fr" id="last-update">Stand: –</div>
 </div>
 </div>
 
 <script>
-const EXCEL={"Wichtige_Infos_Mo":"Wegen Hitze ist um 14 Uhr feierabend","Wichtige_Infos_Di":"Wegen Hitze ist um 14 Uhr feierabend","Wichtige_Infos_Mi":"Wegen Hitze ist um 14 Uhr feierabend","Wichtige_Infos_Do":"Wegen Hitze ist um 14 Uhr feierabend","Wichtige_Infos_Fr":"Wegen Hitze ist um 14 Uhr feierabend","T2_Aufgabe_Mo":"Fl\u00e4che weiter Planieren, Au\u00dfhub f\u00fcr Zweizeiler und Mauer, Material aufmessen","T2_Baustelle_Mo":"Wunsch Hochdorf","T2_Crew_Di":"RK CT LB","T2_Aufgabe_Di":"Mauern helfen bei Vincent","T2_Sonder_Di":"Kran kommt","T2_Baustelle_Di":"Tvirdak Riet","T2_Crew_Mi":"RK CT LB","T2_Aufgabe_Mi":"Kran kommt. Einzeiler setzen, Stufen setzen","T2_Baustelle_Mi":"Wunsch Hochdorf","T2_Crew_Do":"RK CT LB","T2_Aufgabe_Do":"Einzeiler setzen","T2_Baustelle_Do":"Wunsch Hochdorf","T2_Crew_Fr":"RK CT LB","T2_Aufgabe_Fr":"Trockenmauer beginnen","T2_Baustelle_Fr":"Wunsch Hochdorf","T3_Aufgabe_Mo":"Terrasse Fertig Schottern, Randsteine setzen","T3_Baustelle_Mo":"Br\u00f6cker Tamm","T3_Crew_Di":"DZ MA","T3_Aufgabe_Di":"Erde an Terrasse angleichen, Aushub f\u00fcr Randsteine seitlich","T3_Baustelle_Di":"Br\u00f6cker Tamm","T3_Crew_Mi":"DZ MA","T3_Aufgabe_Mi":"Randsteine setzen","T3_Baustelle_Mi":"Br\u00f6cker Tamm","T3_Crew_Do":"DZ MA","T3_Aufgabe_Do":"Carport schottern, Aushub f\u00fcr Granitstelen","T3_Baustelle_Do":"Br\u00f6cker Tamm","T3_Crew_Fr":"DZ MA","T3_Aufgabe_Fr":"Granitstelen setzen","T3_Baustelle_Fr":"Br\u00f6cker Tamm","T4_Aufgabe_Mo":"Mauern","T4_Baustelle_Mo":"Kristian Tvirdack","T4_Crew_Di":"VB PS","T4_Aufgabe_Di":"Mauern","T4_Baustelle_Di":"Kristian Tvirdack","T4_Crew_Mi":"VB PS","T4_Aufgabe_Mi":"Mauern","T4_Baustelle_Mi":"Kristian Tvirdack","T4_Crew_Do":"VB PS","T4_Aufgabe_Do":"Mauern","T4_Baustelle_Do":"Kristian Tvirdack","T4_Crew_Fr":"VB PS","T4_Aufgabe_Fr":"Mauern","T4_Baustelle_Fr":"Kristian Tvirdack"};
+const EXCEL={"Wichtige_Infos_Mo":{"text":"Lea Schule","level":"warn"},"T2_Crew_Mo":"RK CT","T2_Baustelle_Mo":"Kuhne Ippingen","T2_Aufgabe_Mo":"Vorhandenes Pflaster einbauen und abrütteln. Tiefbordsteine liefern und in Beton versetzen","T3_Crew_Mo":"DZ MA","T3_Baustelle_Mo":"Bröcker Tamm","T3_Aufgabe_Mo":"Vorbereiten für Pflasterarbeiten, Rest Granitstelen und Treppe","T4_Crew_Mo":"VB PS","T4_Baustelle_Mo":"Kristian Tvirdack","T4_Aufgabe_Mo":"Terrasse fertig legen, Betonkeil erstellen","Wichtige_Infos_Di":{"text":"Lea Schule","level":"warn"},"T2_Crew_Di":"RK CT","T2_Baustelle_Di":"Wunsch Hochdorf","T2_Aufgabe_Di":"Holzterrasse","T2_Material_Di":"Material abholbereit bei Holzmetzger","T3_Crew_Di":"DZ MA","T3_Baustelle_Di":"Stürner Serres","T3_Aufgabe_Di":"Baustelle einrichten","T4_Crew_Di":"VB PS","T4_Baustelle_Di":"Oettel","T4_Aufgabe_Di":"Sichtschutz montieren","T4_Material_Di":"Material bei Holz-Metzger","Wichtige_Infos_Mi":{"text":"Lea Schule","level":"warn"},"T2_Crew_Mi":"RK CT","T2_Baustelle_Mi":"Wunsch Hochdorf","T2_Aufgabe_Mi":"Holzterrasse","T3_Crew_Mi":"DZ MA","T3_Baustelle_Mi":"Stürner Serres","T3_Aufgabe_Mi":"Aushub für Felsen","T3_Material_Mi":"Lieferung und Rückholung Material Tamm in Klärung, eventuell auch auf Donnerstag früh","T4_Crew_Mi":"VB PS","T4_Baustelle_Mi":"Kristian Tvirdack","T4_Aufgabe_Mi":"Mauern und Treppe fertig stellen, Erdarbeiten","T4_Sonder_Mi":"Kran, Mietbagger","Wichtige_Infos_Do":{"text":"Lea Schule, Marcel Urlaub","level":"warn"},"T2_Crew_Do":"RK CT","T2_Baustelle_Do":"Wunsch Hochdorf","T2_Aufgabe_Do":"Holzterrasse","T3_Crew_Do":"DZ","T3_Baustelle_Do":"Stürner Serres","T3_Aufgabe_Do":"Aushub für Felsen","T4_Crew_Do":"VB PS","T4_Baustelle_Do":"Kristian Tvirdack","T4_Aufgabe_Do":"Erdarbeiten, Planieren","Wichtige_Infos_Fr":{"text":"Lea Schule, Marcel Urlaub","level":"warn"},"T2_Crew_Fr":"RK CT","T2_Baustelle_Fr":"Wunsch Hochdorf","T2_Aufgabe_Fr":"Sichtschutz","T3_Crew_Fr":"DZ","T3_Baustelle_Fr":"Stürner Serres","T3_Aufgabe_Fr":"Aushub für Felsen","T4_Crew_Fr":"VB PS","T4_Baustelle_Fr":"Kristian Tvirdack","T4_Aufgabe_Fr":"Substrat-Restarbeiten"};
+const NOTIZEN=[{"text":"Betriebsurlaub 01.08-16.08.2026","level":"info"},{"text":"Messe Galabau Nürnberg Mittwoch 16.09.2026","level":"info"},{"text":"Wenn Zeitlich ein Slot Frei ist, Platte bei Frau Frenzel Kleben","level":"urgent"}];
 
 const GC_KEY='8f4752b1723d589dab4c098e3499aa7e';
 const GC_BASE='https://app.geocapture.net/api';
-const MA_LIST=[{k:'DS',name:'Daniel Schieler',team:'Team 1',bg:'#6B7280'},{k:'RK',name:'Ralf Klingel',team:'Team 2 · Vorarbeiter',bg:'#1A7A52'},{k:'CT',name:'Christopher Teetsch',team:'Team 2',bg:'#1A7A52'},{k:'LB',name:'Lea Biniasch',team:'Team 2',bg:'#1A7A52'},{k:'DZ',name:'Dennis Zollikofer',team:'Team 3 · Vorarbeiter',bg:'#4338CA'},{k:'MA',name:'Marcel Angermaier',team:'Team 3',bg:'#4338CA'},{k:'VB',name:'Vincent Braun',team:'Team 4 · Vorarbeiter',bg:'#B45309'},{k:'PS',name:'Paul Schm\u00f6hl',team:'Team 4',bg:'#B45309'}];
+const MA_LIST=[{k:'DS',id:19749,name:'Daniel Schieler',team:'Team 1',bg:'#6B7280'},{k:'RK',id:217471,name:'Ralf Klingel',team:'Team 2 · Vorarbeiter',bg:'#1A7A52'},{k:'CT',id:145971,name:'Christopher Teetsch',team:'Team 2',bg:'#1A7A52'},{k:'LB',id:162054,name:'Lea Biniasch',team:'Team 2',bg:'#1A7A52'},{k:'DZ',id:19747,name:'Dennis Zollikofer',team:'Team 3 · Vorarbeiter',bg:'#4338CA'},{k:'MA',id:53907,name:'Marcel Angermaier',team:'Team 3',bg:'#4338CA'},{k:'VB',id:244336,name:'Vincent Braun',team:'Team 4 · Vorarbeiter',bg:'#B45309'},{k:'PS',id:238121,name:'Paul Schmöhl',team:'Team 4',bg:'#B45309'}];
 const VA_MAP={'RK':{name:'Ralf Klingel',team:'Team 2',bg:'#1A7A52'},'DZ':{name:'Dennis Zollikofer',team:'Team 3',bg:'#4338CA'},'VB':{name:'Vincent Braun',team:'Team 4',bg:'#B45309'}};
 const TEAM_CFG=[{n:2,bg:'#1A7A52',label:'T2',va:'Klingel'},{n:3,bg:'#4338CA',label:'T3',va:'Zollikofer'},{n:4,bg:'#B45309',label:'T4',va:'Braun'}];
 
 function tick(){const n=new Date();document.getElementById('clk').textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')}
 tick();setInterval(tick,10000);
 
-function setDate(){const n=new Date();const days=['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];const months=['Januar','Februar','M\u00e4rz','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];const dt=new Date(Date.UTC(n.getFullYear(),n.getMonth(),n.getDate()));dt.setUTCDate(dt.getUTCDate()+4-(dt.getUTCDay()||7));const y=new Date(Date.UTC(dt.getUTCFullYear(),0,1));const kw=Math.ceil((((dt-y)/86400000)+1)/7);document.getElementById('topdate').textContent=days[n.getDay()]+', '+n.getDate()+'. '+months[n.getMonth()]+' '+n.getFullYear()+' \u00b7 KW '+kw}
+function setDate(){const n=new Date();const days=['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];const months=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];const dt=new Date(Date.UTC(n.getFullYear(),n.getMonth(),n.getDate()));dt.setUTCDate(dt.getUTCDate()+4-(dt.getUTCDay()||7));const y=new Date(Date.UTC(dt.getUTCFullYear(),0,1));const kw=Math.ceil((((dt-y)/86400000)+1)/7);document.getElementById('topdate').textContent=days[n.getDay()]+', '+n.getDate()+'. '+months[n.getMonth()]+' '+n.getFullYear()+' · KW '+kw;document.getElementById('kw-label').textContent='KW '+kw;document.getElementById('kw-label2').textContent='KW '+kw}
 setDate();
 
 function getTodayKey(){return['So','Mo','Di','Mi','Do','Fr','Sa'][new Date().getDay()]}
 
 function renderTeams(){
-  const day=getTodayKey();let html='';let haKran=false;
-  TEAM_CFG.forEach(tc=>{
-    const tn=tc.n;const crew=EXCEL['T'+tn+'_Crew_'+day]||'';const auf=EXCEL['T'+tn+'_Aufgabe_'+day]||'';const bs=EXCEL['T'+tn+'_Baustelle_'+day]||'\u2013';const sh=EXCEL['T'+tn+'_Sonder_'+day]||'';
-    if(sh.toLowerCase().includes('kran')||auf.toLowerCase().includes('kran'))haKran=true;
-    const aufgaben=auf.split(/[,;\n]/).map(s=>s.trim()).filter(Boolean);
-    const vaInfo=Object.values(VA_MAP).find(v=>v.name.includes(tc.va))||null;
-    html+='<div class="tb"><div class="th"><div class="tav" style="background:'+tc.bg+'">'+tc.label+'</div><div><div class="tn">'+(vaInfo?vaInfo.name:'Team '+tn)+(crew?' <span style="font-size:10px;font-weight:500;color:var(--text3)">'+crew+'</span>':'')+'</div><div class="tc">Team '+tn+'</div></div></div><div class="tsite">\ud83d\udccd '+bs+'</div><div class="tl">'+aufgaben.map((a,i)=>'<div class="ti"><span class="tin">'+(i+1)+'</span>'+a+'</div>').join('')+'</div>'+(sh?'<div class="stag">\u26a0 '+sh+'</div>':'')+'</div>';
-  });
-  document.getElementById('teams-body').innerHTML=html;
-  if(haKran){const kh=document.getElementById('kran-hinweis');if(kh)kh.style.display='flex'}
-  const info=EXCEL['Wichtige_Infos_'+day]||'';
-  if(info){document.getElementById('alertbar').className='alertbar alert-hitze';document.getElementById('alerttext').textContent='\u26a0 '+info}
-  // Lieferungen im Band
-  const liefs=TEAM_CFG.map(tc=>{const mat=EXCEL['T'+tc.n+'_Material_'+day]||'';const bs=EXCEL['T'+tc.n+'_Baustelle_'+day]||'';return mat&&!mat.toLowerCase().includes('kran')?{text:mat,site:bs}:null}).filter(Boolean);
-  if(liefs.length){let lh='';liefs.forEach(l=>{const m=l.text.match(/^(\d{1,2}[:.]\d{2})\s*(.*)/);lh+='<div class="lief-item"><span class="lief-time">'+(m?m[1]:'\u2013')+'</span><span class="lief-what">'+(m?m[2]:l.text)+'</span><span class="lief-site">· '+l.site+'</span></div>'});document.getElementById('lief-band').innerHTML=lh}
+const day=getTodayKey();let html='';let haKran=false;
+TEAM_CFG.forEach(tc=>{
+const tn=tc.n;const crew=EXCEL['T'+tn+'_Crew_'+day]||'';const auf=EXCEL['T'+tn+'_Aufgabe_'+day]||'';const bs=EXCEL['T'+tn+'_Baustelle_'+day]||'–';const sh=EXCEL['T'+tn+'_Sonder_'+day]||'';
+if(sh.toLowerCase().includes('kran')||auf.toLowerCase().includes('kran'))haKran=true;
+const aufgaben=auf.split(/[,;\n]/).map(s=>s.trim()).filter(Boolean);
+const vaInfo=Object.values(VA_MAP).find(v=>v.name.includes(tc.va))||null;
+html+='<div class="tb"><div class="th"><div class="tav" style="background:'+tc.bg+'">'+tc.label+'</div><div><div class="tn">'+(vaInfo?vaInfo.name:'Team '+tn)+(crew?' <span style="font-size:10px;font-weight:500;color:var(--text3)">'+crew+'</span>':'')+'</div><div class="tc">Team '+tn+'</div></div></div><div class="tsite">📍 '+bs+'</div><div class="tl">'+aufgaben.map((a,i)=>'<div class="ti"><span class="tin">'+(i+1)+'</span>'+a+'</div>').join('')+'</div>'+(sh?'<div class="stag">⚠ '+sh+'</div>':'')+'</div>';
+});
+document.getElementById('teams-body').innerHTML=html;
+if(haKran){const kh=document.getElementById('kran-hinweis');if(kh)kh.style.display='flex'}
+const infoRaw=EXCEL['Wichtige_Infos_'+day];
+const info=infoRaw?(typeof infoRaw==='object'?infoRaw.text:infoRaw):'';
+const level=infoRaw&&typeof infoRaw==='object'?(infoRaw.level||'warn'):'warn';
+const alertbar=document.getElementById('alertbar');
+if(info){const cls=level==='urgent'?'alert-urgent':level==='info'?'alert-info':'alert-hitze';alertbar.className='alertbar '+cls;alertbar.style.display='flex';document.getElementById('alerttext').textContent='⚠ '+info}
+else{alertbar.style.display='none'}
+// Lieferungen im Band
+const liefs=TEAM_CFG.map(tc=>{const mat=EXCEL['T'+tc.n+'_Material_'+day]||'';const bs=EXCEL['T'+tc.n+'_Baustelle_'+day]||'';return mat&&!mat.toLowerCase().includes('kran')?{text:mat,site:bs}:null}).filter(Boolean);
+if(liefs.length){let lh='';liefs.forEach(l=>{const m=l.text.match(/^(\d{1,2}[:.]\d{2})\s*(.*)/);lh+='<div class="lief-item"><span class="lief-time">'+(m?m[1]:'–')+'</span><span class="lief-what">'+(m?m[2]:l.text)+'</span><span class="lief-site">· '+l.site+'</span></div>'});document.getElementById('lief-band').innerHTML=lh}
 }
 
 async function loadWeather(){
-  try{const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=48.93&longitude=9.00&current=temperature_2m,precipitation,windspeed_10m,uv_index&timezone=Europe/Berlin');const d=await r.json();const c=d.current;const t=Math.round(c.temperature_2m);const rain=c.precipitation;const wind=Math.round(c.windspeed_10m);const uv=Math.round(c.uv_index||0);
-  const wt=document.getElementById('wx-t');wt.textContent=t+'\u00b0C';wt.style.color=t>=32?'#C0392B':t>=26?'#C17A00':'#1A1A1A';document.getElementById('wx-ts').textContent=t>=32?'sehr hei\u00df':t>=26?'warm':'angenehm';
-  document.getElementById('wx-r').textContent=rain+'mm';document.getElementById('wx-rs').textContent=rain===0?'trocken':'Regen';
-  document.getElementById('wx-w').textContent=wind+'km/h';document.getElementById('wx-ws').textContent=wind<20?'leicht':'m\u00e4\u00dfig';
-  const wu=document.getElementById('wx-u');wu.textContent=uv+'';wu.style.color=uv>=8?'#C0392B':uv>=6?'#C17A00':'#1A1A1A';document.getElementById('wx-us').textContent=uv>=8?'sehr hoch':uv>=6?'hoch':uv>=3?'mittel':'niedrig';}catch(e){}}
+try{const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=48.93&longitude=9.00&current=temperature_2m,precipitation,windspeed_10m,uv_index&timezone=Europe/Berlin');const d=await r.json();const c=d.current;const t=Math.round(c.temperature_2m);const rain=c.precipitation;const wind=Math.round(c.windspeed_10m);const uv=Math.round(c.uv_index||0);
+const wt=document.getElementById('wx-t');wt.textContent=t+'°C';wt.style.color=t>=32?'#C0392B':t>=26?'#C17A00':'#1A1A1A';document.getElementById('wx-ts').textContent=t>=32?'sehr heiß':t>=26?'warm':'angenehm';
+document.getElementById('wx-r').textContent=rain+'mm';document.getElementById('wx-rs').textContent=rain===0?'trocken':'Regen';
+document.getElementById('wx-w').textContent=wind+'km/h';document.getElementById('wx-ws').textContent=wind<20?'leicht':'mäßig';
+const wu=document.getElementById('wx-u');wu.textContent=uv+'';wu.style.color=uv>=8?'#C0392B':uv>=6?'#C17A00':'#1A1A1A';document.getElementById('wx-us').textContent=uv>=8?'sehr hoch':uv>=6?'hoch':uv>=3?'mittel':'niedrig';}catch(e){}}
 
 async function gcFetch(ep){const r=await fetch(GC_BASE+ep+(ep.includes('?')?'&':'?')+'apitoken='+GC_KEY);if(!r.ok)throw new Error(r.status);return r.json()}
 
+function absColor(typ){
+if(typ==='Krank')return{bg:'var(--red-bg)',fg:'var(--red)',bd:'var(--red)'};
+if(typ==='Urlaub')return{bg:'#FDEBD3',fg:'#C17A00',bd:'#C17A00'};
+if(typ&&typ.indexOf('Schul')>-1)return{bg:'#DCE8FD',fg:'#2563EB',bd:'#2563EB'};
+return{bg:'#E5E7EB',fg:'#6B7280',bd:'#9CA3AF'};
+}
+function fmtDate(d){return d.toISOString().split('T')[0]}
 async function loadMitarbeiter(){
-  try{
-    const today=new Date().toISOString().split('T')[0];
-    const[employees,stamps,absences]=await Promise.all([gcFetch('/employees/'),gcFetch('/stamps/?date_from='+today+'&date_to='+today),gcFetch('/absences/?date_from='+today+'&date_to='+today)]);
-    const gestempelt=new Set();(Array.isArray(stamps)?stamps:(stamps.results||[])).forEach(s=>{if(s.employee)gestempelt.add(String(s.employee))});
-    const urlaubSet=new Set();(Array.isArray(absences)?absences:(absences.results||[])).forEach(a=>{if(a.employee)urlaubSet.add(String(a.employee))});
-    const empList=Array.isArray(employees)?employees:(employees.results||[]);
-    let html='';
-    MA_LIST.forEach(ma=>{const emp=empList.find(e=>(e.short||'').toUpperCase()===ma.k)||null;const empId=emp?String(emp.id):'';const istUrlaub=empId&&urlaubSet.has(empId);const istDa=empId&&gestempelt.has(empId)&&!istUrlaub;let badge='';if(istUrlaub)badge='<div class="mbadge" style="background:var(--red-bg);color:var(--red);border:1px solid var(--red)">Urlaub</div>';else if(istDa)badge='<div class="mbadge" style="background:var(--teal-bg2);color:var(--teal-d);border:1px solid var(--teal)">\u2713 da</div>';else badge='<div class="mbadge" style="background:var(--bg3);color:var(--text3);border:1px solid var(--border)">\u2013</div>';html+='<div class="ma"><div class="mav" style="background:'+ma.bg+(istUrlaub?';opacity:.4':'')+'">'+ma.k+'</div><div style="flex:1"><div class="mn" style="'+(istUrlaub?'text-decoration:line-through;color:var(--text3)':'')+'">'+ma.name+'</div><div class="mt">'+ma.team+'</div></div>'+badge+'</div>'});
-    document.getElementById('ma-body').innerHTML=html;
-    document.getElementById('api-dot').className='fdot';document.getElementById('api-status').textContent='Geocapture verbunden';
-  }catch(e){
-    let html='';MA_LIST.forEach(ma=>{html+='<div class="ma"><div class="mav" style="background:'+ma.bg+'">'+ma.k+'</div><div style="flex:1"><div class="mn">'+ma.name+'</div><div class="mt">'+ma.team+'</div></div><div class="mbadge" style="background:var(--bg3);color:var(--text3);border:1px solid var(--border)">\u2013</div></div>'});
-    document.getElementById('ma-body').innerHTML=html;
-    document.getElementById('api-dot').className='fdot err';document.getElementById('api-status').textContent='Geocapture nicht erreichbar';
-  }
-  const now=new Date();document.getElementById('last-update').textContent='Stand: '+String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0')+' Uhr';
+try{
+const today=new Date();const todayStr=fmtDate(today);
+const weekEnd=new Date(today);weekEnd.setDate(weekEnd.getDate()+6);const weekEndStr=fmtDate(weekEnd);
+const ids=MA_LIST.map(m=>m.id);const idQ=ids.map(id=>'employees[byIds][]='+id).join('&');
+const[stampsRes,absRes]=await Promise.all([gcFetch('/employee_stamp/fetch?'+idQ+'&from='+todayStr+'&to='+todayStr+'&limit=200'),gcFetch('/employee_absence/fetch?filter[from]='+todayStr+'&filter[to]='+weekEndStr+'&limit=500')]);
+const gestempelt=new Set((stampsRes.result&&stampsRes.result.data||[]).map(s=>s.employeeId));
+const absByEmp={};(absRes.result&&absRes.result.data||[]).forEach(a=>{if(!absByEmp[a.employeeId])absByEmp[a.employeeId]={};absByEmp[a.employeeId][a.date]=a.absenceType});
+const days=[];for(let i=0;i<7;i++){const d=new Date(today);d.setDate(d.getDate()+i);days.push(d)}
+const dayLetters=['So','Mo','Di','Mi','Do','Fr','Sa'];
+let html='';
+MA_LIST.forEach(ma=>{
+const empAbs=absByEmp[ma.id]||{};
+const absHeute=empAbs[todayStr];
+const istDa=gestempelt.has(ma.id)&&!absHeute;
+let badge='';
+if(absHeute){const c=absColor(absHeute);badge='<div class="mbadge" style="background:'+c.bg+';color:'+c.fg+';border:1px solid '+c.bd+'">'+absHeute+'</div>'}
+else if(istDa)badge='<div class="mbadge" style="background:var(--teal-bg2);color:var(--teal-d);border:1px solid var(--teal)">✓ da</div>';
+else badge='<div class="mbadge" style="background:var(--bg3);color:var(--text3);border:1px solid var(--border)">–</div>';
+const strip=days.map((d,i)=>{const ds=fmtDate(d);const typ=empAbs[ds];const c=typ?absColor(typ):null;const style=c?('background:'+c.bg+';color:'+c.fg+';border-color:'+c.bd):'';return'<div class="mwd'+(i===0?' mwd-today':'')+'" style="'+style+'" title="'+dayLetters[d.getDay()]+' '+ds+(typ?': '+typ:'')+'">'+d.getDate()+'</div>'}).join('');
+html+='<div class="ma"><div class="mav" style="background:'+ma.bg+(absHeute?';opacity:.5':'')+'">'+ma.k+'</div><div style="flex:1"><div class="mn" style="'+(absHeute?'text-decoration:line-through;color:var(--text3)':'')+'">'+ma.name+'</div><div class="mt">'+ma.team+'</div><div class="mw">'+strip+'</div></div>'+badge+'</div>';
+});
+html+='<div class="mw-legend"><span><i style="background:#C17A00"></i>Urlaub</span><span><i style="background:var(--red)"></i>Krank</span><span><i style="background:#2563EB"></i>Schule</span><span><i style="background:#6B7280"></i>Sonstiges</span></div>';
+document.getElementById('ma-body').innerHTML=html;
+document.getElementById('api-dot').className='fdot';document.getElementById('api-status').textContent='Geocapture verbunden';
+}catch(e){
+let html='';MA_LIST.forEach(ma=>{html+='<div class="ma"><div class="mav" style="background:'+ma.bg+'">'+ma.k+'</div><div style="flex:1"><div class="mn">'+ma.name+'</div><div class="mt">'+ma.team+'</div></div><div class="mbadge" style="background:var(--bg3);color:var(--text3);border:1px solid var(--border)">–</div></div>'});
+document.getElementById('ma-body').innerHTML=html;
+document.getElementById('api-dot').className='fdot err';document.getElementById('api-status').textContent='Geocapture nicht erreichbar';
+}
+const now=new Date();document.getElementById('last-update').textContent='Stand: '+String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0')+' Uhr';
 }
 
-function renderKachel(cardId,pfId,ptId,bodyId,ein){
-  const vas=Object.entries(VA_MAP);const done=vas.filter(([k])=>ein.has(k)).length;
-  document.getElementById(pfId).style.width=Math.round(done/vas.length*100)+'%';
-  document.getElementById(ptId).textContent=done+'/'+vas.length;
-  let html='';vas.forEach(([k,v])=>{const ok=ein.has(k);html+='<div class="vr"><div class="vl"><div class="vav" style="background:'+v.bg+'">'+k+'</div><div><div class="vn">'+v.name+'</div><div class="vt">'+v.team+'</div></div></div><div class="sp '+(ok?'sd':'so')+'">'+(ok?'\u2713 Eingereicht':'\u26a0 Fehlt')+'</div></div>'});
-  document.getElementById(bodyId).innerHTML=html;
-  const card=document.getElementById(cardId);
-  if(done===vas.length){card.classList.remove('bk-red');card.classList.add('bk-green')}else{card.classList.remove('bk-green');card.classList.add('bk-red')}
-}
-
-async function loadBerichte(){
-  try{
-    const gestern=new Date();gestern.setDate(gestern.getDate()-1);const gDate=gestern.toISOString().split('T')[0];
-    const forms=await gcFetch('/forms/?date_from='+gDate+'&date_to='+gDate);
-    const fList=Array.isArray(forms)?forms:(forms.results||[]);
-    const einBtb=new Set();const einRap=new Set();
-    fList.forEach(f=>{
-      const name=(f.employee_name||f.created_by||'').toLowerCase();
-      const typ=(f.form_type||f.type||f.name||f.title||'').toLowerCase();
-      const isBtb=typ.includes('bautages')||typ.includes('tagesbericht');
-      const isRap=typ.includes('rapport');
-      Object.entries(VA_MAP).forEach(([k,v])=>{
-        if(name.includes(v.name.split(' ')[1].toLowerCase())){
-          if(isBtb)einBtb.add(k);if(isRap)einRap.add(k);
-          if(!isBtb&&!isRap){einBtb.add(k);einRap.add(k);}
-        }
-      });
-    });
-    renderKachel('bc-btb','pf-btb','pt-btb','body-btb',einBtb);
-    renderKachel('bc-rap','pf-rap','pt-rap','body-rap',einRap);
-  }catch(e){renderKachel('bc-btb','pf-btb','pt-btb','body-btb',new Set());renderKachel('bc-rap','pf-rap','pt-rap','body-rap',new Set())}
+function renderNotizen(){
+const body=document.getElementById('notizen-body');
+if(!NOTIZEN||!NOTIZEN.length){body.innerHTML='<div class="notiz-empty">Keine besonderen Notizen</div>';return}
+let html='';
+NOTIZEN.forEach(n=>{
+const c=n.level==='urgent'?{bg:'var(--red-bg)',fg:'var(--red)'}:n.level==='info'?{bg:'var(--teal-bg)',fg:'var(--teal-d)'}:{bg:'var(--amber-bg)',fg:'var(--amber)'};
+html+='<div class="notiz-item" style="background:'+c.bg+';color:'+c.fg+'">'+n.text+'</div>';
+});
+body.innerHTML=html;
 }
 
 async function start(){
-  renderTeams();
-  await Promise.all([loadWeather(),loadMitarbeiter().then(()=>loadBerichte())]);
-  setInterval(()=>{loadWeather();loadMitarbeiter().then(()=>loadBerichte())},3600000);
+renderTeams();
+renderNotizen();
+await Promise.all([loadWeather(),loadMitarbeiter()]);
+setInterval(()=>{loadWeather();loadMitarbeiter()},3600000);
 }
 window.addEventListener('load',start);
 </script></body></html>
