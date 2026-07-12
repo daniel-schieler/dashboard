@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Wochenplan – Daniel Schieler Gartengestaltung</title><style>
+:root{--bg:#F0F2F0;--bg2:#FFFFFF;--bg3:#E8EBE8;--border:#D0D8D0;--teal:#1A7A52;--teal-d:#0F5438;--teal-bg:#E8F5EE;--teal-bg2:#D0EDE0;--amber:#C17A00;--amber-bg:#FFF3DC;--red:#C0392B;--red-bg:#FDECEA;--text:#1A1A1A;--text2:#3A3A3A;--text3:#6A7A6A;--font:'Segoe UI',Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font);padding-bottom:30px}
+.header{background:#fff;border-bottom:3px solid var(--teal);padding:16px 18px}
+.header h1{font-size:18px;color:var(--teal-d);font-weight:700}
+.header .sub{font-size:12px;color:var(--text3);margin-top:2px}
+.wrap{max-width:600px;margin:0 auto;padding:14px}
+.notiz{padding:10px 14px;border-radius:9px;font-size:14px;font-weight:600;margin-bottom:8px}
+.day{background:#fff;border:1.5px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
+.day-head{background:var(--teal);color:#fff;padding:10px 14px;font-size:15px;font-weight:700}
+.day-info{padding:8px 14px;font-size:13px;font-weight:600}
+.team{padding:12px 14px;border-top:1px solid var(--border)}
+.team-name{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.team-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.team-crew{font-size:11px;color:var(--text3);font-weight:500}
+.team-site{font-size:12px;color:var(--teal-d);font-weight:600;margin:4px 0}
+.team-tasks{font-size:13px;color:var(--text2);line-height:1.5;margin-left:2px}
+.team-tasks div{margin-bottom:2px}
+.team-tag{display:inline-block;margin-top:5px;font-size:11px;padding:2px 8px;border-radius:12px;background:var(--amber-bg);color:var(--amber);font-weight:700}
+.no-day{padding:14px;font-size:13px;color:var(--text3)}
+.footer{max-width:600px;margin:0 auto;padding:10px 14px;font-size:11px;color:var(--text3);text-align:center}
+</style></head><body>
+<div class="header">
+  <h1>Daniel Schieler Gartengestaltung</h1>
+  <div class="sub">Wochenplan · <span id="kw-label">KW –</span></div>
+</div>
+<div class="wrap" id="notizen-wrap"></div>
+<div class="wrap" id="days-wrap"></div>
+<div class="footer" id="footer-stand">Stand: –</div>
+<script>
+const EXCEL={"Wichtige_Infos_Mo":{"text":"Lea Schule","level":"warn"},"T2_Crew_Mo":"RK CT","T2_Baustelle_Mo":"Kuhne Ippingen","T2_Aufgabe_Mo":"Vorhandenes Pflaster einbauen und abrütteln. Tiefbordsteine liefern und in Beton versetzen","T3_Crew_Mo":"DZ MA","T3_Baustelle_Mo":"Bröcker Tamm","T3_Aufgabe_Mo":"Vorbereiten für Pflasterarbeiten, Rest Granitstelen und Treppe","T4_Crew_Mo":"VB PS","T4_Baustelle_Mo":"Kristian Tvirdack","T4_Aufgabe_Mo":"Terrasse fertig legen, Betonkeil erstellen","Wichtige_Infos_Di":{"text":"Lea Schule","level":"warn"},"T2_Crew_Di":"RK CT","T2_Baustelle_Di":"Wunsch Hochdorf","T2_Aufgabe_Di":"Holzterrasse","T2_Material_Di":"Material abholbereit bei Holzmetzger","T3_Crew_Di":"DZ MA","T3_Baustelle_Di":"Stürner Serres","T3_Aufgabe_Di":"Baustelle einrichten","T4_Crew_Di":"VB PS","T4_Baustelle_Di":"Oettel","T4_Aufgabe_Di":"Sichtschutz montieren","T4_Material_Di":"Material bei Holz-Metzger","Wichtige_Infos_Mi":{"text":"Lea Schule","level":"warn"},"T2_Crew_Mi":"RK CT","T2_Baustelle_Mi":"Wunsch Hochdorf","T2_Aufgabe_Mi":"Holzterrasse","T3_Crew_Mi":"DZ MA","T3_Baustelle_Mi":"Stürner Serres","T3_Aufgabe_Mi":"Aushub für Felsen","T3_Material_Mi":"Lieferung und Rückholung Material Tamm in Klärung, eventuell auch auf Donnerstag früh","T4_Crew_Mi":"VB PS","T4_Baustelle_Mi":"Kristian Tvirdack","T4_Aufgabe_Mi":"Mauern und Treppe fertig stellen, Erdarbeiten","T4_Sonder_Mi":"Kran, Mietbagger","Wichtige_Infos_Do":{"text":"Lea Schule, Marcel Urlaub","level":"warn"},"T2_Crew_Do":"RK CT","T2_Baustelle_Do":"Wunsch Hochdorf","T2_Aufgabe_Do":"Holzterrasse","T3_Crew_Do":"DZ","T3_Baustelle_Do":"Stürner Serres","T3_Aufgabe_Do":"Aushub für Felsen","T4_Crew_Do":"VB PS","T4_Baustelle_Do":"Kristian Tvirdack","T4_Aufgabe_Do":"Erdarbeiten, Planieren","Wichtige_Infos_Fr":{"text":"Lea Schule, Marcel Urlaub","level":"warn"},"T2_Crew_Fr":"RK CT","T2_Baustelle_Fr":"Wunsch Hochdorf","T2_Aufgabe_Fr":"Sichtschutz","T3_Crew_Fr":"DZ","T3_Baustelle_Fr":"Stürner Serres","T3_Aufgabe_Fr":"Aushub für Felsen","T4_Crew_Fr":"VB PS","T4_Baustelle_Fr":"Kristian Tvirdack","T4_Aufgabe_Fr":"Substrat-Restarbeiten"};
+const NOTIZEN=[{"text":"Betriebsurlaub 01.08-16.08.2026","level":"info"},{"text":"Messe Galabau Nürnberg Mittwoch 16.09.2026","level":"info"}];
+const DAYS=[{k:'Mo',label:'Montag'},{k:'Di',label:'Dienstag'},{k:'Mi',label:'Mittwoch'},{k:'Do',label:'Donnerstag'},{k:'Fr',label:'Freitag'}];
+const TEAM_CFG=[{n:2,bg:'#1A7A52'},{n:3,bg:'#4338CA'},{n:4,bg:'#B45309'}];
+
+function computeKW(){const n=new Date();const dt=new Date(Date.UTC(n.getFullYear(),n.getMonth(),n.getDate()));dt.setUTCDate(dt.getUTCDate()+4-(dt.getUTCDay()||7));const y=new Date(Date.UTC(dt.getUTCFullYear(),0,1));return Math.ceil((((dt-y)/86400000)+1)/7)}
+
+function renderNotizen(){
+  const wrap=document.getElementById('notizen-wrap');
+  if(!NOTIZEN||!NOTIZEN.length){wrap.innerHTML='';return}
+  let html='';
+  NOTIZEN.forEach(n=>{
+    const c=n.level==='urgent'?{bg:'var(--red-bg)',fg:'var(--red)'}:n.level==='info'?{bg:'var(--teal-bg)',fg:'var(--teal-d)'}:{bg:'var(--amber-bg)',fg:'var(--amber)'};
+    html+='<div class="notiz" style="background:'+c.bg+';color:'+c.fg+'">📌 '+n.text+'</div>';
+  });
+  wrap.innerHTML=html;
+}
+
+function renderDays(){
+  let html='';
+  DAYS.forEach(d=>{
+    const infoRaw=EXCEL['Wichtige_Infos_'+d.k];
+    const info=infoRaw?(typeof infoRaw==='object'?infoRaw.text:infoRaw):'';
+    const level=infoRaw&&typeof infoRaw==='object'?(infoRaw.level||'warn'):'warn';
+    const infoColor=level==='urgent'?{bg:'var(--red-bg)',fg:'var(--red)'}:level==='info'?{bg:'var(--teal-bg)',fg:'var(--teal-d)'}:{bg:'var(--amber-bg)',fg:'var(--amber)'};
+
+    let teamsHtml='';let hasAny=false;
+    TEAM_CFG.forEach(tc=>{
+      const crew=EXCEL['T'+tc.n+'_Crew_'+d.k]||'';
+      const auf=EXCEL['T'+tc.n+'_Aufgabe_'+d.k]||'';
+      const bs=EXCEL['T'+tc.n+'_Baustelle_'+d.k]||'';
+      const sh=EXCEL['T'+tc.n+'_Sonder_'+d.k]||'';
+      if(!auf&&!bs&&!crew)return;
+      hasAny=true;
+      const aufgaben=auf.split(/[,;\n]/).map(s=>s.trim()).filter(Boolean);
+      teamsHtml+='<div class="team"><div class="team-name"><span class="team-dot" style="background:'+tc.bg+'"></span>Team '+tc.n+(crew?' <span class="team-crew">· '+crew+'</span>':'')+'</div>'+(bs?'<div class="team-site">📍 '+bs+'</div>':'')+'<div class="team-tasks">'+aufgaben.map(a=>'<div>• '+a+'</div>').join('')+'</div>'+(sh?'<div class="team-tag">⚠ '+sh+'</div>':'')+'</div>';
+    });
+
+    html+='<div class="day"><div class="day-head">'+d.label+'</div>'+(info?'<div class="day-info" style="background:'+infoColor.bg+';color:'+infoColor.fg+'">⚠ '+info+'</div>':'')+(hasAny?teamsHtml:'<div class="no-day">Keine Einträge für diesen Tag</div>')+'</div>';
+  });
+  document.getElementById('days-wrap').innerHTML=html;
+}
+
+document.getElementById('kw-label').textContent='KW '+computeKW();
+renderNotizen();
+renderDays();
+const now=new Date();
+document.getElementById('footer-stand').textContent='Stand: '+String(now.getDate()).padStart(2,'0')+'.'+String(now.getMonth()+1).padStart(2,'0')+'.'+now.getFullYear()+', '+String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0')+' Uhr · automatisch aktualisiert';
+</script>
+</body></html>
