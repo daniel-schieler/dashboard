@@ -1,24 +1,24 @@
 <!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Wochenplan – Daniel Schieler Gartengestaltung</title><style>
-:root{--bg:#F0F2F0;--bg2:#FFFFFF;--bg3:#E8EBE8;--border:#D0D8D0;--teal:#1A7A52;--teal-d:#0F5438;--teal-bg:#E8F5EE;--teal-bg2:#D0EDE0;--amber:#C17A00;--amber-bg:#FFF3DC;--red:#C0392B;--red-bg:#FDECEA;--text:#1A1A1A;--text2:#3A3A3A;--text3:#6A7A6A;--font:'Segoe UI',Arial,sans-serif}
+:root{--bg:#F0F2F0;--bg2:#FFFFFF;--bg3:#F5F5F5;--border:#DFDFDF;--navy:#003952;--navy-d:#00283A;--navy-bg:#EAF1F4;--navy-bg2:#D3E3E9;--lime:#BACB02;--lime-d:#7A8601;--lime-bg:#F7FAD6;--amber:#C17A00;--amber-bg:#FFF3DC;--red:#A43C37;--red-bg:#FBEAE9;--text:#1A1A1A;--text2:#3A3A3A;--text3:#5A6B75;--font:'Segoe UI',Arial,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:var(--font);padding-bottom:30px}
-.header{background:#fff;border-bottom:3px solid var(--teal);padding:16px 18px}
-.header h1{font-size:18px;color:var(--teal-d);font-weight:700}
+.header{background:#fff;border-bottom:3px solid var(--navy);padding:16px 18px}
+.header h1{font-size:18px;color:var(--navy-d);font-weight:700}
 .header .sub{font-size:12px;color:var(--text3);margin-top:2px}
 .wrap{max-width:600px;margin:0 auto;padding:14px}
 .notiz{padding:10px 14px;border-radius:9px;font-size:14px;font-weight:600;margin-bottom:8px}
 .day{background:#fff;border:1.5px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
-.day-head{background:var(--teal);color:#fff;padding:10px 14px;font-size:15px;font-weight:700}
+.day-head{background:var(--navy);color:#fff;padding:10px 14px;font-size:15px;font-weight:700}
 .day-info{padding:8px 14px;font-size:13px;font-weight:600}
 .team{padding:12px 14px;border-top:1px solid var(--border)}
 .team-name{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px;margin-bottom:6px}
 .team-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 .team-crew{font-size:11px;color:var(--text3);font-weight:500}
-.team-site{font-size:12px;color:var(--teal-d);font-weight:600;margin:4px 0}
+.team-site{font-size:12px;color:var(--navy-d);font-weight:600;margin:4px 0}
 .team-tasks{font-size:13px;color:var(--text2);line-height:1.5;margin-left:2px}
 .team-tasks div{margin-bottom:2px}
 .team-tag{display:inline-block;margin-top:5px;font-size:11px;padding:2px 8px;border-radius:12px;background:var(--amber-bg);color:var(--amber);font-weight:700}
-.team-machines{display:inline-block;margin-top:5px;margin-left:5px;font-size:11px;padding:2px 8px;border-radius:12px;background:var(--teal-bg);color:var(--teal-d);font-weight:700}
+.team-machines{display:inline-block;margin-top:5px;margin-left:5px;font-size:11px;padding:2px 8px;border-radius:12px;background:var(--lime-bg);color:var(--lime-d);font-weight:700}
 .team-empty{color:var(--text3);font-style:italic}
 .no-day{padding:14px;font-size:13px;color:var(--text3)}
 .footer{max-width:600px;margin:0 auto;padding:10px 14px;font-size:11px;color:var(--text3);text-align:center}
@@ -34,7 +34,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);padding-bott
 const EXCEL={"T1_Crew_Mo":"DS","T1_Baustelle_Mo":"Ezel","T1_Aufgabe_Mo":"Mobilbaggereinsatz ca. ab 12","T2_Crew_Mo":"RK CT PS","T2_Baustelle_Mo":"Höschle Enzweihingen","T2_Aufgabe_Mo":"Zaun montieren","T2_Material_Mo":"Zaun bei Holz Metzger","T3_Crew_Mo":"DZ MA","T3_Baustelle_Mo":"Ezel Nußdorf, Stürner/Lutz","T3_Aufgabe_Mo":"Baggereinsatz bis ca. 12 Uhr. danach zu Stürner Schottern","T3_Material_Mo":"Schotter, ggf. rRnnenmaterial bestellen","T4_Crew_Mo":"VB LB","T4_Baustelle_Mo":"Krehl Vaihingen","T4_Aufgabe_Mo":"Baustelleneinrichtung,  Besprechung, anschliesend Aushub für Granitstelen","T4_Sonder_Mo":"Marcel bringt EZ 38 von Serres, Dumper vom Lager, Überfahrmatten.","T4_Material_Mo":"Container für Erdaushub wird gestellt, Granitstelen aufmessen für Bestellung","T1_Crew_Di":"DS","T1_Baustelle_Di":"Ezel Nußdorf","T1_Aufgabe_Di":"Mobilbaggereinsatz","T2_Crew_Di":"RK CT","T2_Aufgabe_Di":"Restarbeiten Zaunbau, Danach vorbereiten für Kranarbeit Wunsch, rücksprache mit Marcel wegen mulden Laden","T3_Crew_Di":"DZ PS MA","T3_Baustelle_Di":"Stürner Serres","T3_Aufgabe_Di":"Fertig schottern, Rinne setzen","T3_Sonder_Di":"Marcel ist mit LKW Verfügbar","T3_Material_Di":"Schotter,","T4_Crew_Di":"VB LB","T4_Baustelle_Di":"WEG Vaihingen, Bröcker Tamm","T4_Aufgabe_Di":"Ausgraben für Granitstelen, Granitstelen liefern und versetzen","T4_Sonder_Di":"Granitstelen werden geliefert","T1_Crew_Mi":"DS","T1_Baustelle_Mi":"Etzel Nußdorf","T1_Aufgabe_Mi":"Mobilbaggereinsatz","T2_Crew_Mi":"RK CT PS","T2_Baustelle_Mi":"Wunsch Hochdorf","T2_Aufgabe_Mi":"Substrate verteilen, Erdasuhub laden und Bagger aus dem Garten heben. Baum absägen und entsorgen","T2_Sonder_Mi":"Kran Kommt. Marcel steht mit Mulden bereit. Substrat ist in Mulde vorbereitet","T2_Material_Mi":"Substrat in Mulde","T3_Crew_Mi":"DZ","T3_Baustelle_Mi":"Wunsch Nussdorf Stürner Serres","T3_Aufgabe_Mi":"Ralf Unterstützen, danach Restarbeiten.","T3_Sonder_Mi":"Je nach Zeit und verfügbarkeit wird der Takeuchi abgeholt und umgesetzt","T4_Crew_Mi":"VB LB","T4_Baustelle_Mi":"Krehl Enzweihingen","T4_Aufgabe_Mi":"Granitstelen fertig setzen, Terrasse abräumen","T4_Material_Mi":"Material in Container","T1_Crew_Do":"DS","T1_Baustelle_Do":"Ezel Nußdorf","T1_Aufgabe_Do":"Mobilbaggereinsatz","T2_Crew_Do":"RK CT LB","T2_Baustelle_Do":"Rabus Hemmingen","T2_Aufgabe_Do":"Baustelle einrichten. Tiefbordsteine setzen.","T3_Crew_Do":"DZ PS MA","T3_Baustelle_Do":"Kläranalge Talhausen","T3_Aufgabe_Do":"Rückbau Wassereinlauf","T3_Sonder_Do":"Takeuchi 280FR, Liebherr 506","T3_Material_Do":"Felsen (Zugsteine)","T4_Baustelle_Do":"Bröcker Tamm","T4_Aufgabe_Do":"Restarbeiten, Baustelle abräumen","T1_Crew_Fr":"DS","T1_Baustelle_Fr":"Ezel, Nußdorf","T1_Aufgabe_Fr":"Mobilbaggerinsatz","T2_Crew_Fr":"RK CT LB","T2_Baustelle_Fr":"Rabus Hemmingen","T2_Aufgabe_Fr":"Rinne setzen, Hof Schottern.","T2_Sonder_Fr":"EZ 38, WL37","T3_Crew_Fr":"DZ PS","T3_Baustelle_Fr":"Talhausen","T3_Aufgabe_Fr":"Rückbau Wasserinlauf","T1_Maschinen_Mo":"Mobilbagger","T3_Maschinen_Mo":"Bagger 8to, Radlader 4to","T4_Maschinen_Mo":"Bagger 4to, Kettendumper","T1_Maschinen_Di":"Mobilbagger","T2_Maschinen_Di":"Bagger 1,7to Minibagger","T3_Maschinen_Di":"Bagger 8to, Radlader 4to","T4_Maschinen_Di":"Bagger 4to","T1_Maschinen_Mi":"Mobilbagger","T2_Maschinen_Mi":"Bagger 1,7to Minibagger, Bagger 4to","T3_Maschinen_Mi":"Bagger 8to","T1_Maschinen_Do":"Mobilbagger","T2_Maschinen_Do":"Bagger 4to","T3_Maschinen_Do":"Bagger 8to, Radlader 6to","T4_Maschinen_Do":"Kettendumper","T1_Maschinen_Fr":"Mobilbagger","T3_Maschinen_Fr":"Bagger 4to, Bagger 8to, Radlader 6to"};
 const NOTIZEN=[{"text":"Betriebsurlaub 01.08-16.08.2026","level":"info"},{"text":"Messe Galabau Nürnberg Mittwoch 16.09.2026","level":"info"},{"text":"Daniel Schieler ist nur sporadisch da 13.07-31.07","level":"info"}];
 const DAYS=[{k:'Mo',label:'Montag'},{k:'Di',label:'Dienstag'},{k:'Mi',label:'Mittwoch'},{k:'Do',label:'Donnerstag'},{k:'Fr',label:'Freitag'}];
-const TEAM_CFG=[{n:1,bg:'#6B7280'},{n:2,bg:'#1A7A52'},{n:3,bg:'#4338CA'},{n:4,bg:'#B45309'}];
+const TEAM_CFG=[{n:1,bg:'#6B7280'},{n:2,bg:'#003952'},{n:3,bg:'#4338CA'},{n:4,bg:'#B45309'}];
 
 function computeKW(){const n=new Date();const dt=new Date(Date.UTC(n.getFullYear(),n.getMonth(),n.getDate()));dt.setUTCDate(dt.getUTCDate()+4-(dt.getUTCDay()||7));const y=new Date(Date.UTC(dt.getUTCFullYear(),0,1));return Math.ceil((((dt-y)/86400000)+1)/7)}
 
@@ -43,7 +43,7 @@ function renderNotizen(){
   if(!NOTIZEN||!NOTIZEN.length){wrap.innerHTML='';return}
   let html='';
   NOTIZEN.forEach(n=>{
-    const c=n.level==='urgent'?{bg:'var(--red-bg)',fg:'var(--red)'}:n.level==='info'?{bg:'var(--teal-bg)',fg:'var(--teal-d)'}:{bg:'var(--amber-bg)',fg:'var(--amber)'};
+    const c=n.level==='urgent'?{bg:'var(--red-bg)',fg:'var(--red)'}:n.level==='info'?{bg:'var(--navy-bg)',fg:'var(--navy-d)'}:{bg:'var(--amber-bg)',fg:'var(--amber)'};
     html+='<div class="notiz" style="background:'+c.bg+';color:'+c.fg+'">📌 '+n.text+'</div>';
   });
   wrap.innerHTML=html;
@@ -55,7 +55,7 @@ function renderDays(){
     const infoRaw=EXCEL['Wichtige_Infos_'+d.k];
     const info=infoRaw?(typeof infoRaw==='object'?infoRaw.text:infoRaw):'';
     const level=infoRaw&&typeof infoRaw==='object'?(infoRaw.level||'warn'):'warn';
-    const infoColor=level==='urgent'?{bg:'var(--red-bg)',fg:'var(--red)'}:level==='info'?{bg:'var(--teal-bg)',fg:'var(--teal-d)'}:{bg:'var(--amber-bg)',fg:'var(--amber)'};
+    const infoColor=level==='urgent'?{bg:'var(--red-bg)',fg:'var(--red)'}:level==='info'?{bg:'var(--navy-bg)',fg:'var(--navy-d)'}:{bg:'var(--amber-bg)',fg:'var(--amber)'};
 
     let teamsHtml='';
     TEAM_CFG.forEach(tc=>{
