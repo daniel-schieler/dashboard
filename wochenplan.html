@@ -18,6 +18,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);padding-bott
 .team-tasks{font-size:13px;color:var(--text2);line-height:1.5;margin-left:2px}
 .team-tasks div{margin-bottom:2px}
 .team-tag{display:inline-block;margin-top:5px;font-size:11px;padding:2px 8px;border-radius:12px;background:var(--amber-bg);color:var(--amber);font-weight:700}
+.team-machines{display:inline-block;margin-top:5px;margin-left:5px;font-size:11px;padding:2px 8px;border-radius:12px;background:var(--teal-bg);color:var(--teal-d);font-weight:700}
 .team-empty{color:var(--text3);font-style:italic}
 .no-day{padding:14px;font-size:13px;color:var(--text3)}
 .footer{max-width:600px;margin:0 auto;padding:10px 14px;font-size:11px;color:var(--text3);text-align:center}
@@ -62,9 +63,10 @@ function renderDays(){
       const auf=EXCEL['T'+tc.n+'_Aufgabe_'+d.k]||'';
       const bs=EXCEL['T'+tc.n+'_Baustelle_'+d.k]||'';
       const sh=EXCEL['T'+tc.n+'_Sonder_'+d.k]||'';
+      const ma=EXCEL['T'+tc.n+'_Maschinen_'+d.k]||'';
       const aufgaben=auf.split(/[,;\n]/).map(s=>s.trim()).filter(Boolean);
       const tasksHtml=aufgaben.length?aufgaben.map(a=>'<div>• '+a+'</div>').join(''):'<div class="team-empty">Keine Einträge</div>';
-      teamsHtml+='<div class="team"><div class="team-name"><span class="team-dot" style="background:'+tc.bg+'"></span>Team '+tc.n+(crew?' <span class="team-crew">· '+crew+'</span>':'')+'</div>'+(bs?'<div class="team-site">📍 '+bs+'</div>':'')+'<div class="team-tasks">'+tasksHtml+'</div>'+(sh?'<div class="team-tag">⚠ '+sh+'</div>':'')+'</div>';
+      teamsHtml+='<div class="team"><div class="team-name"><span class="team-dot" style="background:'+tc.bg+'"></span>Team '+tc.n+(crew?' <span class="team-crew">· '+crew+'</span>':'')+'</div>'+(bs?'<div class="team-site">📍 '+bs+'</div>':'')+'<div class="team-tasks">'+tasksHtml+'</div>'+(sh?'<div class="team-tag">⚠ '+sh+'</div>':'')+(ma?'<div class="team-machines">🛠 '+ma+'</div>':'')+'</div>';
     });
 
     html+='<div class="day"><div class="day-head">'+d.label+'</div>'+(info?'<div class="day-info" style="background:'+infoColor.bg+';color:'+infoColor.fg+'">⚠ '+info+'</div>':'')+teamsHtml+'</div>';
