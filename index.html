@@ -96,6 +96,14 @@ html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-fam
 .fdot.err{background:var(--red)}
 .fdot.loading{background:var(--amber);animation:pulse 1s infinite}
 .fr{font-size:10px;color:var(--text3);font-weight:500}
+
+/* VORSCHAU-LEISTE (nur in der Editor-Vorschau, nie auf dem echten TV) */
+.preview-bar{position:fixed;top:0;left:0;right:0;height:34px;background:var(--navy-d);display:flex;align-items:center;gap:6px;padding:0 16px;z-index:1000;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+.preview-label{color:#fff;font-size:11px;font-weight:700;margin-right:6px;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+.preview-btn{background:transparent;border:1.5px solid rgba(255,255,255,.35);color:#fff;font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;cursor:pointer;font-family:var(--font)}
+.preview-btn:hover{border-color:#fff}
+.preview-btn.active{background:var(--lime);border-color:var(--lime);color:var(--navy-d)}
+body.preview-mode .screen{padding-top:34px}
 </style></head><body>
 <div class="screen">
 
@@ -170,7 +178,7 @@ html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-fam
 </div>
 
 <script>
-const EXCEL={"Wichtige_Infos_Mo":{"text":"Dynamische Arbeitszeit, Kernarbeits 7-14 Uhr, danach je nach Temperatur und Wohlbefinden","level":"urgent"},"T1_Crew_Mo":"DS","T2_Baustelle_Mo":"Rabus Hemmingen","T2_Material_Mo":"Marcel liefern Bagger und Radlader","T4_Crew_Mo":"VB PS MA","T4_Baustelle_Mo":"Krehl Enzweihingen","T4_Aufgabe_Mo":"Terrasse Schottern alles für Feinsteinzeug Terrasse vorbereiten, Trassbinder und Feinsteinzeugplatten bei bergle holen, Gewindestange in Wand einkleben","T4_Material_Mo":"FSZ Platten, Trassbinder und Fliesenkleber holen, BasaltSplitt von Steinbruch","Wichtige_Infos_Di":{"text":"Dynamische Arbeitszeit, Kernarbeits 7-14 Uhr, danach je nach Temperatur und Wohlbefinden","level":"warn"},"T1_Crew_Di":"DS","T2_Baustelle_Di":"Rabus Hemmingen","T4_Crew_Di":"VB PS MA","T4_Baustelle_Di":"Krempel Vaihingen","T4_Aufgabe_Di":"Terrasse legen, Bagger zurück ans Lager Überfahrmatten zurück ans Lager","Wichtige_Infos_Mi":{"text":"Dynamische Arbeitszeit, Kernarbeits 7-14 Uhr, danach je nach Temperatur und Wohlbefinden","level":"warn"},"T1_Crew_Mi":"DS","T2_Crew_Mi":"RK LB MA","T2_Baustelle_Mi":"Hofmann Horrheim","T2_Aufgabe_Mi":"Schotterfläche vorbereiten,ggf. Ausgraben, Schotter vor Gartenhütte aufschottern, Platten liefern.","T2_Material_Mi":"Terrassenplatten bei Bergle","T3_Baustelle_Mi":"Verschiedenes","T4_Crew_Mi":"VB PS","T4_Baustelle_Mi":"Tvirdack Riet, Krehl Enzweihingen","T4_Aufgabe_Mi":"Tcirdack\nSchrittplatten legen, Restarbeiten.\nKrehl Enzweihingen\nweiter Platten legen","Wichtige_Infos_Do":{"text":"Dynamische Arbeitszeit, Kernarbeits 7-14 Uhr, danach je nach Temperatur und Wohlbefinden","level":"warn"},"T1_Crew_Do":"DS","T2_Crew_Do":"RK LB MA","T2_Baustelle_Do":"Hofmann Horrheim","T2_Aufgabe_Do":"Splitt liefern und verteilen, Terrassenplatten legen","T3_Baustelle_Do":"Baustellen div.","T3_Aufgabe_Do":"Restarbeiten bis 12 Uhr","T3_Material_Do":"Felsen (Zugsteine)","T4_Crew_Do":"VB PS","T4_Baustelle_Do":"Krehl Enzweihingen","T4_Aufgabe_Do":"Restarbeiten an Terrasse, Blockstufen liefern und versetzen","T4_Sonder_Do":"Blockstufen kommen ans lager","T1_Crew_Fr":"DS","T2_Crew_Fr":"RK","T2_Baustelle_Fr":"Hofmann, Horrheim","T2_Aufgabe_Fr":"Restarbeiten an Terrasse,Baustelle aufräumen und abräumen","T3_Crew_Fr":"LB","T4_Crew_Fr":"VB","T4_Baustelle_Fr":"Krehl Enzweihingen","T4_Aufgabe_Fr":"Terrasse ausfugen, Doppelstabmatten montieren","T4_Material_Fr":"Fugenmaterial VDW im Lager, Doppelstabmatten am Lager+Winkel/Halter+Dübel","T2_Maschinen_Mo":"Bagger 4to, Radlader 4to","T3_Maschinen_Mo":"Bagger 8to, Radlader 6to","T4_Maschinen_Mo":"Bagger 1,7to Minibagger","T2_Maschinen_Di":"Bagger 4to, Radlader 4to","T3_Maschinen_Di":"Bagger 8to, Radlader 6to","T4_Maschinen_Do":"Ladekran 27mto Auf Abrollgestell","T3_Maschinen_Fr":"Radlader 6to"};
+const EXCEL={"T1_Crew_Mo":"DS","T2_Baustelle_Mo":"Rabus Hemmingen","T2_Material_Mo":"Marcel liefern Bagger und Radlader","T4_Crew_Mo":"VB PS MA","T4_Baustelle_Mo":"Krehl Enzweihingen","T4_Aufgabe_Mo":"Terrasse Schottern alles für Feinsteinzeug Terrasse vorbereiten, Trassbinder und Feinsteinzeugplatten bei bergle holen, Gewindestange in Wand einkleben","T4_Material_Mo":"FSZ Platten, Trassbinder und Fliesenkleber holen, BasaltSplitt von Steinbruch","T1_Crew_Di":"DS","T2_Baustelle_Di":"Rabus Hemmingen","T4_Crew_Di":"VB PS MA","T4_Baustelle_Di":"Krempel Vaihingen","T4_Aufgabe_Di":"Terrasse legen, Bagger zurück ans Lager Überfahrmatten zurück ans Lager","T1_Crew_Mi":"DS","T2_Crew_Mi":"RK LB MA","T2_Baustelle_Mi":"Hofmann Horrheim","T2_Aufgabe_Mi":"Schotterfläche vorbereiten,ggf. Ausgraben, Schotter vor Gartenhütte aufschottern, Platten liefern.","T2_Material_Mi":"Terrassenplatten bei Bergle","T3_Baustelle_Mi":"Verschiedenes","T4_Crew_Mi":"VB PS","T4_Baustelle_Mi":"Tvirdack Riet, Krehl Enzweihingen","T4_Aufgabe_Mi":"Tcirdack\nSchrittplatten legen, Restarbeiten.\nKrehl Enzweihingen\nweiter Platten legen","T1_Crew_Do":"DS","T2_Crew_Do":"RK LB MA","T2_Baustelle_Do":"Hofmann Horrheim","T2_Aufgabe_Do":"Splitt liefern und verteilen, Terrassenplatten legen","T3_Baustelle_Do":"Baustellen div.","T3_Aufgabe_Do":"Restarbeiten bis 12 Uhr","T3_Material_Do":"Felsen (Zugsteine)","T4_Crew_Do":"VB PS","T4_Baustelle_Do":"Krehl Enzweihingen","T4_Aufgabe_Do":"Restarbeiten an Terrasse, Blockstufen liefern und versetzen","T4_Sonder_Do":"Blockstufen kommen ans lager","T1_Crew_Fr":"DS","T2_Crew_Fr":"RK","T2_Baustelle_Fr":"Hofmann, Horrheim","T2_Aufgabe_Fr":"Restarbeiten an Terrasse,Baustelle aufräumen und abräumen","T3_Crew_Fr":"LB","T4_Crew_Fr":"VB","T4_Baustelle_Fr":"Krehl Enzweihingen","T4_Aufgabe_Fr":"Terrasse ausfugen, Doppelstabmatten montieren","T4_Material_Fr":"Fugenmaterial VDW im Lager, Doppelstabmatten am Lager+Winkel/Halter+Dübel","T2_Maschinen_Mo":"Bagger 4to, Radlader 4to","T3_Maschinen_Mo":"Bagger 8to, Radlader 6to","T2_Maschinen_Di":"Bagger 4to, Radlader 4to","T3_Maschinen_Di":"Bagger 8to, Radlader 6to","T4_Maschinen_Do":"Ladekran 27mto Auf Abrollgestell","T3_Maschinen_Fr":"Radlader 6to"};
 const NOTIZEN=[{"text":"Messe Galabau Nürnberg Mittwoch 16.09.2026","level":"info"}];
 
 const GC_KEY='8f4752b1723d589dab4c098e3499aa7e';
@@ -186,7 +194,30 @@ tick();setInterval(tick,10000);
 function setDate(){const n=new Date();const days=['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];const months=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];const dt=new Date(Date.UTC(n.getFullYear(),n.getMonth(),n.getDate()));dt.setUTCDate(dt.getUTCDate()+4-(dt.getUTCDay()||7));const y=new Date(Date.UTC(dt.getUTCFullYear(),0,1));const kw=Math.ceil((((dt-y)/86400000)+1)/7);document.getElementById('topdate').textContent=days[n.getDay()]+', '+n.getDate()+'. '+months[n.getMonth()]+' '+n.getFullYear()+' · KW '+kw;document.getElementById('kw-label').textContent='KW '+kw;document.getElementById('kw-label2').textContent='KW '+kw}
 setDate();
 
-function getTodayKey(){return['So','Mo','Di','Mi','Do','Fr','Sa'][new Date().getDay()]}
+function getTodayKey(){if(previewDay)return previewDay;return['So','Mo','Di','Mi','Do','Fr','Sa'][new Date().getDay()]}
+
+// Vorschau-Modus: per ?preview=1 aktiviert (setzt der Editor-Button), damit
+// auf dem echten TV im Lager nie eine Bedienleiste auftaucht.
+const IS_PREVIEW=new URLSearchParams(location.search).get('preview')==='1';
+let previewDay=null;
+
+function setPreviewDay(key,btn){
+previewDay=key;
+document.querySelectorAll('.preview-btn').forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
+renderTeams();
+}
+
+function renderPreviewBar(){
+if(!IS_PREVIEW)return;
+document.body.classList.add('preview-mode');
+const days=[['Mo','Montag'],['Di','Dienstag'],['Mi','Mittwoch'],['Do','Donnerstag'],['Fr','Freitag']];
+const realToday=getTodayKey();
+let html='<div class="preview-bar"><span class="preview-label">🔍 Vorschau</span>';
+days.forEach(([k,label])=>{html+='<button class="preview-btn'+(k===realToday?' active':'')+'" onclick="setPreviewDay(\''+k+'\',this)">'+label+'</button>'});
+html+='</div>';
+document.body.insertAdjacentHTML('afterbegin',html);
+}
 
 function renderTeams(){
 const day=getTodayKey();let html='';let haKran=false;
@@ -277,6 +308,7 @@ body.innerHTML=html;
 }
 
 async function start(){
+renderPreviewBar();
 renderTeams();
 renderNotizen();
 await Promise.all([loadWeather(),loadMitarbeiter()]);
