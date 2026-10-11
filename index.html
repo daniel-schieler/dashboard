@@ -141,7 +141,7 @@ body.preview-mode .screen{padding-top:34px}
 <!-- SPALTE 1: Aufgaben + Sicherheit -->
 <div style="display:flex;flex-direction:column;gap:8px">
 <div class="card" style="flex:1">
-<div class="ch"><div class="ct">📋 Aufgaben heute</div><div class="cs"><span id="kw-label2">KW 28</span> · Excel</div></div>
+<div class="ch"><div class="ct">📋 Aufgaben heute</div><div class="cs"><span id="kw-label2">KW 28</span> · Plan</div></div>
 <div class="cb" id="teams-body"></div>
 </div>
 <div class="card">
@@ -172,13 +172,13 @@ body.preview-mode .screen{padding-top:34px}
 
 <!-- FOOTER -->
 <div class="footer">
-<div class="fl"><div class="fdot loading" id="api-dot"></div><span id="api-status">Verbinde...</span><span>·</span><span>Geocapture · Excel KW28 · Open-Meteo Vaihingen</span></div>
+<div class="fl"><div class="fdot loading" id="api-dot"></div><span id="api-status">Verbinde...</span><span>·</span><span id="plan-src">Geocapture · Open-Meteo Vaihingen</span></div>
 <div class="fr" id="last-update">Stand: –</div>
 </div>
 </div>
 
 <script>
-const EXCEL={"T1_Aufgeloest_Mo":2,"T2_Crew_Mo":"RK DS PS","T2_Baustelle_Mo":"BVH Kricke, Allmendstraße 19, Hemmingen","T2_Aufgabe_Mo":"Terrasse Schottern, Erdarbeiten","T2_Material_Mo":"Schotter ist bestellt","T3_Crew_Mo":"DZ LB","T3_Baustelle_Mo":"BVH Alter Ziegeleiweg 3, 71665 Vaihingen Enz","T3_Aufgabe_Mo":"Randsteine setzen, Zaunpfosten einbetonieren","T3_Material_Mo":"Material ist bei Bergle bestellt","T4_Crew_Mo":"VB CT","T4_Baustelle_Mo":"BVH: Deufel/Kappes Steinestraße 17/1, Enzweihingen","T4_Aufgabe_Mo":"Minibagger zurück zu RAG, Felsen setzen","T4_Sonder_Mo":"Bagger wird geliefert","T4_Material_Mo":"Felsen bringe ich auch","T1_Crew_Di":"DS","T1_Baustelle_Di":"Klärwerk Thalhausen","T1_Aufgabe_Di":"Mobilbaggerdienstleistung","T2_Crew_Di":"RK PS","T2_Baustelle_Di":"BVH Kricke, Allmendstraße 19, Hemmingen","T2_Aufgabe_Di":"Terrasse und Seitenweg fertig auf höhe Schottern; Frühstücksterrasse nicht vergessen","T2_Material_Di":"Schotter nach bedarf bestellen","T3_Crew_Di":"DZ LB","T3_Baustelle_Di":"BVH Alter Ziegeleiweg 3, 71665 Vaihingen Enz","T3_Aufgabe_Di":"Fläche Schottern; Splitt liefern und abziehen","T3_Material_Di":"Schotter wird geliefert, Menge rechtzeitig anmelden","T4_Crew_Di":"VB CT","T4_Baustelle_Di":"BVH: Deufel/Kappes Steinestraße 17/1, Enzweihingen","T4_Aufgabe_Di":"Felsen fertig setzen","T1_Crew_Mi":"DS","T1_Baustelle_Mi":"Klärwerk Thalhausen","T1_Aufgabe_Mi":"Baggerdienstleistung","T2_Crew_Mi":"RK PS","T2_Baustelle_Mi":"BVH Kricke, Allmendstraße 19, Hemmingen","T2_Aufgabe_Mi":"Stellplatz ausbaggern und Schottern","T3_Crew_Mi":"DZ LB","T3_Baustelle_Mi":"BVH Alter Ziegeleiweg 3, 71665 Vaihingen Enz","T3_Aufgabe_Mi":"Pflaster legen; Einschneiden","T4_Crew_Mi":"VB CT","T4_Baustelle_Mi":"BVH: Deufel/Kappes Steinestraße 17/1, Enzweihingen","T4_Aufgabe_Mi":"Stufen versetzen; Splitt liefern und abziehen; Platten legen","T1_Crew_Do":"DS","T1_Baustelle_Do":"DANIEL SCHIELER GALABAU","T2_Crew_Do":"RK PS","T2_Baustelle_Do":"BVH Kricke, Allmendstraße 19, Hemmingen","T2_Aufgabe_Do":"Stellplatz Pflastern","T3_Crew_Do":"DZ LB","T3_Baustelle_Do":"BVH Alter Ziegeleiweg 3, 71665 Vaihingen Enz","T3_Aufgabe_Do":"Restarbeiten","T4_Crew_Do":"VB CT","T4_Baustelle_Do":"BVH: Deufel/Kappes Steinestraße 17/1, Enzweihingen","T4_Aufgabe_Do":"Terrasse fertig legen","T1_Baustelle_Fr":"BV KLOTZ","T2_Baustelle_Fr":"BVH Kricke, Allmendstraße 19, Hemmingen","T2_Aufgabe_Fr":"Rest Schottern, Oberboden und Substrat","T3_Baustelle_Fr":"DANIEL SCHIELER GALABAU","T3_Aufgabe_Fr":"Stufen fertig setzen, Hof Schottern","T4_Baustelle_Fr":"Ziegelei","T4_Aufgabe_Fr":"Pflastern und einschneiden","T2_Maschinen_Mo":"Bagger 4to, Mobilbagger, Radlader 4to","T4_Maschinen_Mo":"Bagger 8to, Radlader 6to","T1_Maschinen_Di":"Mobilbagger","T2_Maschinen_Di":"Bagger 4to, Radlader 4to","T3_Maschinen_Di":"Radlader 6to","T4_Maschinen_Di":"Bagger 8to","T1_Maschinen_Mi":"Mobilbagger","T2_Maschinen_Mi":"Bagger 4to, Radlader 4to","T4_Maschinen_Mi":"Bagger 8to, Radlader 6to","T1_Maschinen_Do":"Mobilbagger","T2_Maschinen_Do":"Bagger 4to, Radlader 4to","T4_Maschinen_Do":"Bagger 8to, Radlader 6to","T1_Maschinen_Fr":"Mobilbagger","T2_Maschinen_Fr":"Bagger 4to, Radlader 4to","T3_Maschinen_Fr":"Bagger 8to, Radlader 6to"};
+const EXCEL={"T1_Aufgeloest_Mo":3,"T2_Crew_Mo":"RK","T2_Baustelle_Mo":"BVH Kricke, Allmendstraße 19, Hemmingen","T2_Aufgabe_Mo":"Terrasse Schottern, Stellplatz Pflastern","T3_Crew_Mo":"DZ DS","T3_Baustelle_Mo":"Jens Lutz, Clara-Zetkin Str.34 Wiernsheim","T3_Aufgabe_Mo":"Baggerdienstleistung","T3_Material_Mo":"Ich komme zum Tanken","T4_Crew_Mo":"VB CT","T4_Baustelle_Mo":"BVH: Deufel/Kappes Steinestraße 17/1, Enzweihingen","T4_Aufgabe_Mo":"Mauerscheiben Setzen","T4_Material_Mo":"Je nach Bedarf kann ich Beton liefern","T1_Crew_Di":"DS","T1_Baustelle_Di":"Klärwerk Thalhausen","T2_Crew_Di":"RK","T2_Baustelle_Di":"BVH Kricke, Allmendstraße 19, Hemmingen","T2_Aufgabe_Di":"Rest Pflasterarbeiten; Erdarbeiten,","T2_Material_Di":"Schotter nach bedarf bestellen","T3_Crew_Di":"DZ","T3_Baustelle_Di":"Klärwerk Thalhausen","T3_Aufgabe_Di":"Baggerdienstleistung","T4_Crew_Di":"VB CT","T4_Baustelle_Di":"BVH: Deufel/Kappes Steinestraße 17/1, Enzweihingen","T4_Aufgabe_Di":"Stufen setzen, Paralell Mauerscheiben","T1_Crew_Mi":"DS","T1_Baustelle_Mi":"Klärwerk Thalhausen","T2_Crew_Mi":"RK PS","T2_Baustelle_Mi":"BVH Kricke, Allmendstraße 19, Hemmingen","T2_Aufgabe_Mi":"Rest Erdarbeiten, Terrasse Splitten, Substrat","T2_Material_Mi":"Substrat kann ich nach bedarf liefern","T3_Crew_Mi":"DZ","T3_Baustelle_Mi":"Klärwerk Thalhausen","T3_Aufgabe_Mi":"Baggerdienstleistung","T4_Crew_Mi":"VB CT","T4_Baustelle_Mi":"BVH: Deufel/Kappes Steinestraße 17/1, Enzweihingen","T4_Aufgabe_Mi":"Stufen versetzen; Mauerscheiben Setzen","T1_Crew_Do":"DS","T1_Baustelle_Do":"DANIEL SCHIELER GALABAU","T2_Crew_Do":"RK PS","T2_Baustelle_Do":"BVH Kricke, Allmendstraße 19, Hemmingen","T2_Aufgabe_Do":"Felsen in Böschung setzen, Restarbeioten, baustelle abräumen","T3_Crew_Do":"DZ","T3_Baustelle_Do":"Klärwerk Thalhausen","T3_Aufgabe_Do":"Baggerdienstleistung","T4_Crew_Do":"VB CT","T4_Baustelle_Do":"BVH: Deufel/Kappes Steinestraße 17/1, Enzweihingen","T4_Aufgabe_Do":"Rest Mauerscheiben setzen; Rest stufen setzen","T1_Crew_Fr":"DS","T1_Baustelle_Fr":"DANIEL SCHIELER GALABAU","T2_Crew_Fr":"RK PS","T2_Baustelle_Fr":"Kinzinger Hochdorf","T2_Aufgabe_Fr":"Baustelle einrichten, Hecke Roden, Mauer abbrechen","T3_Crew_Fr":"DZ","T3_Baustelle_Fr":"Klärwerk Thalhausen","T3_Aufgabe_Fr":"Baggerdienstleistung","T4_Crew_Fr":"VB CT","T4_Baustelle_Fr":"BVH: Deufel/Kappes Steinestraße 17/1, Enzweihingen","T4_Aufgabe_Fr":"Terrasse fertig; Mauer fertig","T2_Maschinen_Mo":"Bagger 4to, Mobilbagger, Radlader 4to","T3_Maschinen_Di":"Mobilbagger","T4_Maschinen_Di":"Bagger 8to, Radlader 6to","T2_Maschinen_Mi":"Bagger 4to, Radlader 4to","T3_Maschinen_Mi":"Mobilbagger","T4_Maschinen_Mi":"Bagger 8to, Radlader 6to","T2_Maschinen_Do":"Bagger 4to, Radlader 4to","T3_Maschinen_Do":"Mobilbagger","T4_Maschinen_Do":"Bagger 8to, Radlader 6to","T2_Maschinen_Fr":"Bagger 4to, Radlader 4to","T3_Maschinen_Fr":"Mobilbagger","T4_Maschinen_Fr":"Bagger 8to, Radlader 6to","_Woche":"2026-10-12"};
 const NOTIZEN=[{"text":"Für Donnerstag ist Starker Niederschlag vorher gesagt, Bei der Planung bedenken","level":"info"},{"text":"Ab dem 13.010 bin ich Dienstags Mittags nicht mehr greifbar. Kinderdienst weil Frau wieder Arbeitet","level":"urgent"}];
 
 const GC_KEY='8f4752b1723d589dab4c098e3499aa7e';
@@ -195,6 +195,34 @@ function setDate(){const n=new Date();const days=['Sonntag','Montag','Dienstag',
 setDate();
 
 function getTodayKey(){if(previewDay)return previewDay;return['So','Mo','Di','Mi','Do','Fr','Sa'][new Date().getDay()]}
+
+// Wochen-Logik: Der Editor speichert in EXCEL._Woche den Montag (ISO) der Woche,
+// zu der der Plan gehoert. So merkt der TV, wenn niemand die neue Woche geplant hat.
+function isoLocal(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function mondayOf(d){const x=new Date(d.getFullYear(),d.getMonth(),d.getDate());x.setDate(x.getDate()-((x.getDay()+6)%7));return x}
+function kwOf(d){const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));t.setUTCDate(t.getUTCDate()+4-(t.getUTCDay()||7));const y=new Date(Date.UTC(t.getUTCFullYear(),0,1));return Math.ceil((((t-y)/86400000)+1)/7)}
+function planKW(){const pw=EXCEL._Woche;return pw?kwOf(new Date(pw+'T12:00:00')):null}
+function staleInfo(){
+const pw=EXCEL._Woche;if(!pw||previewDay)return null;
+const dow=new Date().getDay();if(dow===0||dow===6)return null;
+if(pw<isoLocal(mondayOf(new Date())))return'Plan ist veraltet (letzter Plan: KW '+planKW()+') – bitte im Büro die neue Woche planen';
+return null;
+}
+function renderPlanInfo(){
+const kw=planKW();
+if(kw){document.getElementById('kw-label2').textContent='KW '+kw;document.getElementById('plan-src').textContent='Geocapture · Plan KW '+kw+' · Open-Meteo Vaihingen'}
+}
+
+// Der TV laedt sich selbst neu, damit neue Plaene und der Tageswechsel ohne
+// Handgriff ankommen. Neu geladen wird nur, wenn die Seite gerade erreichbar ist -
+// sonst bliebe bei kurzem Internetausfall ein leerer Fehlerbildschirm stehen.
+function scheduleRefresh(){
+if(IS_PREVIEW||location.protocol==='file:')return;
+setInterval(async()=>{
+try{const r=await fetch(location.pathname+'?t='+Date.now(),{cache:'no-store'});
+if(r.ok){const t=await r.text();if(t.length>1000)location.reload()}}catch(e){}
+},600000);
+}
 
 // Vorschau-Modus: per ?preview=1 aktiviert (setzt der Editor-Button), damit
 // auf dem echten TV im Lager nie eine Bedienleiste auftaucht.
@@ -221,7 +249,9 @@ document.body.insertAdjacentHTML('afterbegin',html);
 
 function renderTeams(){
 const day=getTodayKey();let html='';let haKran=false;
+const wochenende=!previewDay&&(day==='So'||day==='Sa');
 TEAM_CFG.forEach(tc=>{
+if(wochenende)return;
 const tn=tc.n;const crew=EXCEL['T'+tn+'_Crew_'+day]||'';const auf=EXCEL['T'+tn+'_Aufgabe_'+day]||'';const bs=EXCEL['T'+tn+'_Baustelle_'+day]||'–';const sh=EXCEL['T'+tn+'_Sonder_'+day]||'';const ma=EXCEL['T'+tn+'_Maschinen_'+day]||'';
 if(EXCEL['T'+tn+'_Aufgeloest_'+day])return; // Vorarbeiter ist bei einem anderen Team eingeplant -> Team entfaellt
 if(tn===1&&!crew.split(/\s+/).some(k=>k&&k!=='DS'))return; // Team 1 (Daniel) nur zeigen, wenn noch jemand dabei ist
@@ -234,13 +264,14 @@ const vaAbsence=vaKey?ABS_BY_EMP_TODAY[vaKey]:null;
 const vaAbsColor=vaAbsence?absColor(vaAbsence):null;
 html+='<div class="tb"><div class="th"><div class="tav" style="background:'+tc.bg+(vaAbsence?';opacity:.5':'')+'">'+tc.label+'</div><div><div class="tn" style="'+(vaAbsence?'text-decoration:line-through;color:var(--text3)':'')+'">'+(vaInfo?vaInfo.name:'Team '+tn)+(crew?' <span style="font-size:10px;font-weight:500;color:var(--text3)">'+crew+'</span>':'')+'</div><div class="tc">Team '+tn+'</div></div></div>'+(vaAbsence?'<div class="stag" style="background:'+vaAbsColor.bg+';color:'+vaAbsColor.fg+';border-color:'+vaAbsColor.bd+'">⚠ Vorarbeiter '+vaAbsence+' – heute nicht dabei</div>':'')+'<div class="tsite">📍 '+bs+'</div><div class="tl">'+aufgaben.map((a,i)=>'<div class="ti"><span class="tin">'+(i+1)+'</span>'+a+'</div>').join('')+'</div>'+(sh?'<div class="stag">⚠ '+sh+'</div>':'')+(ma?'<div class="mtag">🛠 '+ma+'</div>':'')+'</div>';
 });
-document.getElementById('teams-body').innerHTML=html||'<div class="notiz-empty">Für diesen Tag sind keine Teams eingeplant</div>';
+document.getElementById('teams-body').innerHTML=html||'<div class="notiz-empty">'+(wochenende?'Wochenende – kein Einsatzplan. Der nächste Plan gilt ab Montag.':'Für diesen Tag sind keine Teams eingeplant')+'</div>';
 if(haKran){const kh=document.getElementById('kran-hinweis');if(kh)kh.style.display='flex'}
 const infoRaw=EXCEL['Wichtige_Infos_'+day];
 const info=infoRaw?(typeof infoRaw==='object'?infoRaw.text:infoRaw):'';
 const level=infoRaw&&typeof infoRaw==='object'?(infoRaw.level||'warn'):'warn';
 const alertbar=document.getElementById('alertbar');
-if(info){const cls=level==='urgent'?'alert-urgent':level==='info'?'alert-info':'alert-hitze';alertbar.className='alertbar '+cls;alertbar.style.display='flex';document.getElementById('alerttext').textContent='⚠ '+info}
+const stale=staleInfo();
+if(info||stale){const cls=stale?'alert-urgent':level==='urgent'?'alert-urgent':level==='info'?'alert-info':'alert-hitze';alertbar.className='alertbar '+cls;alertbar.style.display='flex';document.getElementById('alerttext').textContent='⚠ '+(stale?stale+(info?' · '+info:''):info)}
 else{alertbar.style.display='none'}
 // Lieferungen im Band
 const liefs=TEAM_CFG.map(tc=>{const mat=EXCEL['T'+tc.n+'_Material_'+day]||'';const bs=EXCEL['T'+tc.n+'_Baustelle_'+day]||'';return mat&&!mat.toLowerCase().includes('kran')?{text:mat,site:bs}:null}).filter(Boolean);
@@ -300,9 +331,11 @@ const now=new Date();document.getElementById('last-update').textContent='Stand: 
 
 function renderNotizen(){
 const body=document.getElementById('notizen-body');
-if(!NOTIZEN||!NOTIZEN.length){body.innerHTML='<div class="notiz-empty">Keine besonderen Notizen</div>';return}
+const heute=isoLocal(new Date());
+const aktuelle=(NOTIZEN||[]).filter(n=>!n.bis||n.bis>=heute); // Notizen mit abgelaufenem "gültig bis" ausblenden
+if(!aktuelle.length){body.innerHTML='<div class="notiz-empty">Keine besonderen Notizen</div>';return}
 let html='';
-NOTIZEN.forEach(n=>{
+aktuelle.forEach(n=>{
 const c=n.level==='urgent'?{bg:'var(--red-bg)',fg:'var(--red)'}:n.level==='info'?{bg:'var(--navy-bg)',fg:'var(--navy-d)'}:{bg:'var(--amber-bg)',fg:'var(--amber)'};
 html+='<div class="notiz-item" style="background:'+c.bg+';color:'+c.fg+'">'+n.text+'</div>';
 });
@@ -313,6 +346,8 @@ async function start(){
 renderPreviewBar();
 renderTeams();
 renderNotizen();
+renderPlanInfo();
+scheduleRefresh();
 await Promise.all([loadWeather(),loadMitarbeiter()]);
 setInterval(()=>{loadWeather();loadMitarbeiter()},3600000);
 }

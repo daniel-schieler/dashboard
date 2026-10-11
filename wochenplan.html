@@ -31,18 +31,39 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);padding-bott
 <div class="wrap" id="days-wrap"></div>
 <div class="footer" id="footer-stand">Stand: –</div>
 <script>
-const EXCEL={"T1_Aufgeloest_Mo":2,"T2_Crew_Mo":"RK DS PS","T2_Baustelle_Mo":"BVH Kricke, Allmendstraße 19, Hemmingen","T2_Aufgabe_Mo":"Terrasse Schottern, Erdarbeiten","T2_Material_Mo":"Schotter ist bestellt","T3_Crew_Mo":"DZ LB","T3_Baustelle_Mo":"BVH Alter Ziegeleiweg 3, 71665 Vaihingen Enz","T3_Aufgabe_Mo":"Randsteine setzen, Zaunpfosten einbetonieren","T3_Material_Mo":"Material ist bei Bergle bestellt","T4_Crew_Mo":"VB CT","T4_Baustelle_Mo":"BVH: Deufel/Kappes Steinestraße 17/1, Enzweihingen","T4_Aufgabe_Mo":"Minibagger zurück zu RAG, Felsen setzen","T4_Sonder_Mo":"Bagger wird geliefert","T4_Material_Mo":"Felsen bringe ich auch","T1_Crew_Di":"DS","T1_Baustelle_Di":"Klärwerk Thalhausen","T1_Aufgabe_Di":"Mobilbaggerdienstleistung","T2_Crew_Di":"RK PS","T2_Baustelle_Di":"BVH Kricke, Allmendstraße 19, Hemmingen","T2_Aufgabe_Di":"Terrasse und Seitenweg fertig auf höhe Schottern; Frühstücksterrasse nicht vergessen","T2_Material_Di":"Schotter nach bedarf bestellen","T3_Crew_Di":"DZ LB","T3_Baustelle_Di":"BVH Alter Ziegeleiweg 3, 71665 Vaihingen Enz","T3_Aufgabe_Di":"Fläche Schottern; Splitt liefern und abziehen","T3_Material_Di":"Schotter wird geliefert, Menge rechtzeitig anmelden","T4_Crew_Di":"VB CT","T4_Baustelle_Di":"BVH: Deufel/Kappes Steinestraße 17/1, Enzweihingen","T4_Aufgabe_Di":"Felsen fertig setzen","T1_Crew_Mi":"DS","T1_Baustelle_Mi":"Klärwerk Thalhausen","T1_Aufgabe_Mi":"Baggerdienstleistung","T2_Crew_Mi":"RK PS","T2_Baustelle_Mi":"BVH Kricke, Allmendstraße 19, Hemmingen","T2_Aufgabe_Mi":"Stellplatz ausbaggern und Schottern","T3_Crew_Mi":"DZ LB","T3_Baustelle_Mi":"BVH Alter Ziegeleiweg 3, 71665 Vaihingen Enz","T3_Aufgabe_Mi":"Pflaster legen; Einschneiden","T4_Crew_Mi":"VB CT","T4_Baustelle_Mi":"BVH: Deufel/Kappes Steinestraße 17/1, Enzweihingen","T4_Aufgabe_Mi":"Stufen versetzen; Splitt liefern und abziehen; Platten legen","T1_Crew_Do":"DS","T1_Baustelle_Do":"DANIEL SCHIELER GALABAU","T2_Crew_Do":"RK PS","T2_Baustelle_Do":"BVH Kricke, Allmendstraße 19, Hemmingen","T2_Aufgabe_Do":"Stellplatz Pflastern","T3_Crew_Do":"DZ LB","T3_Baustelle_Do":"BVH Alter Ziegeleiweg 3, 71665 Vaihingen Enz","T3_Aufgabe_Do":"Restarbeiten","T4_Crew_Do":"VB CT","T4_Baustelle_Do":"BVH: Deufel/Kappes Steinestraße 17/1, Enzweihingen","T4_Aufgabe_Do":"Terrasse fertig legen","T1_Baustelle_Fr":"BV KLOTZ","T2_Baustelle_Fr":"BVH Kricke, Allmendstraße 19, Hemmingen","T2_Aufgabe_Fr":"Rest Schottern, Oberboden und Substrat","T3_Baustelle_Fr":"DANIEL SCHIELER GALABAU","T3_Aufgabe_Fr":"Stufen fertig setzen, Hof Schottern","T4_Baustelle_Fr":"Ziegelei","T4_Aufgabe_Fr":"Pflastern und einschneiden","T2_Maschinen_Mo":"Bagger 4to, Mobilbagger, Radlader 4to","T4_Maschinen_Mo":"Bagger 8to, Radlader 6to","T1_Maschinen_Di":"Mobilbagger","T2_Maschinen_Di":"Bagger 4to, Radlader 4to","T3_Maschinen_Di":"Radlader 6to","T4_Maschinen_Di":"Bagger 8to","T1_Maschinen_Mi":"Mobilbagger","T2_Maschinen_Mi":"Bagger 4to, Radlader 4to","T4_Maschinen_Mi":"Bagger 8to, Radlader 6to","T1_Maschinen_Do":"Mobilbagger","T2_Maschinen_Do":"Bagger 4to, Radlader 4to","T4_Maschinen_Do":"Bagger 8to, Radlader 6to","T1_Maschinen_Fr":"Mobilbagger","T2_Maschinen_Fr":"Bagger 4to, Radlader 4to","T3_Maschinen_Fr":"Bagger 8to, Radlader 6to"};
+const EXCEL={"T1_Aufgeloest_Mo":3,"T2_Crew_Mo":"RK","T2_Baustelle_Mo":"BVH Kricke, Allmendstraße 19, Hemmingen","T2_Aufgabe_Mo":"Terrasse Schottern, Stellplatz Pflastern","T3_Crew_Mo":"DZ DS","T3_Baustelle_Mo":"Jens Lutz, Clara-Zetkin Str.34 Wiernsheim","T3_Aufgabe_Mo":"Baggerdienstleistung","T3_Material_Mo":"Ich komme zum Tanken","T4_Crew_Mo":"VB CT","T4_Baustelle_Mo":"BVH: Deufel/Kappes Steinestraße 17/1, Enzweihingen","T4_Aufgabe_Mo":"Mauerscheiben Setzen","T4_Material_Mo":"Je nach Bedarf kann ich Beton liefern","T1_Crew_Di":"DS","T1_Baustelle_Di":"Klärwerk Thalhausen","T2_Crew_Di":"RK","T2_Baustelle_Di":"BVH Kricke, Allmendstraße 19, Hemmingen","T2_Aufgabe_Di":"Rest Pflasterarbeiten; Erdarbeiten,","T2_Material_Di":"Schotter nach bedarf bestellen","T3_Crew_Di":"DZ","T3_Baustelle_Di":"Klärwerk Thalhausen","T3_Aufgabe_Di":"Baggerdienstleistung","T4_Crew_Di":"VB CT","T4_Baustelle_Di":"BVH: Deufel/Kappes Steinestraße 17/1, Enzweihingen","T4_Aufgabe_Di":"Stufen setzen, Paralell Mauerscheiben","T1_Crew_Mi":"DS","T1_Baustelle_Mi":"Klärwerk Thalhausen","T2_Crew_Mi":"RK PS","T2_Baustelle_Mi":"BVH Kricke, Allmendstraße 19, Hemmingen","T2_Aufgabe_Mi":"Rest Erdarbeiten, Terrasse Splitten, Substrat","T2_Material_Mi":"Substrat kann ich nach bedarf liefern","T3_Crew_Mi":"DZ","T3_Baustelle_Mi":"Klärwerk Thalhausen","T3_Aufgabe_Mi":"Baggerdienstleistung","T4_Crew_Mi":"VB CT","T4_Baustelle_Mi":"BVH: Deufel/Kappes Steinestraße 17/1, Enzweihingen","T4_Aufgabe_Mi":"Stufen versetzen; Mauerscheiben Setzen","T1_Crew_Do":"DS","T1_Baustelle_Do":"DANIEL SCHIELER GALABAU","T2_Crew_Do":"RK PS","T2_Baustelle_Do":"BVH Kricke, Allmendstraße 19, Hemmingen","T2_Aufgabe_Do":"Felsen in Böschung setzen, Restarbeioten, baustelle abräumen","T3_Crew_Do":"DZ","T3_Baustelle_Do":"Klärwerk Thalhausen","T3_Aufgabe_Do":"Baggerdienstleistung","T4_Crew_Do":"VB CT","T4_Baustelle_Do":"BVH: Deufel/Kappes Steinestraße 17/1, Enzweihingen","T4_Aufgabe_Do":"Rest Mauerscheiben setzen; Rest stufen setzen","T1_Crew_Fr":"DS","T1_Baustelle_Fr":"DANIEL SCHIELER GALABAU","T2_Crew_Fr":"RK PS","T2_Baustelle_Fr":"Kinzinger Hochdorf","T2_Aufgabe_Fr":"Baustelle einrichten, Hecke Roden, Mauer abbrechen","T3_Crew_Fr":"DZ","T3_Baustelle_Fr":"Klärwerk Thalhausen","T3_Aufgabe_Fr":"Baggerdienstleistung","T4_Crew_Fr":"VB CT","T4_Baustelle_Fr":"BVH: Deufel/Kappes Steinestraße 17/1, Enzweihingen","T4_Aufgabe_Fr":"Terrasse fertig; Mauer fertig","T2_Maschinen_Mo":"Bagger 4to, Mobilbagger, Radlader 4to","T3_Maschinen_Di":"Mobilbagger","T4_Maschinen_Di":"Bagger 8to, Radlader 6to","T2_Maschinen_Mi":"Bagger 4to, Radlader 4to","T3_Maschinen_Mi":"Mobilbagger","T4_Maschinen_Mi":"Bagger 8to, Radlader 6to","T2_Maschinen_Do":"Bagger 4to, Radlader 4to","T3_Maschinen_Do":"Mobilbagger","T4_Maschinen_Do":"Bagger 8to, Radlader 6to","T2_Maschinen_Fr":"Bagger 4to, Radlader 4to","T3_Maschinen_Fr":"Mobilbagger","T4_Maschinen_Fr":"Bagger 8to, Radlader 6to","_Woche":"2026-10-12"};
 const NOTIZEN=[{"text":"Für Donnerstag ist Starker Niederschlag vorher gesagt, Bei der Planung bedenken","level":"info"},{"text":"Ab dem 13.010 bin ich Dienstags Mittags nicht mehr greifbar. Kinderdienst weil Frau wieder Arbeitet","level":"urgent"}];
 const DAYS=[{k:'Mo',label:'Montag'},{k:'Di',label:'Dienstag'},{k:'Mi',label:'Mittwoch'},{k:'Do',label:'Donnerstag'},{k:'Fr',label:'Freitag'}];
 const TEAM_CFG=[{n:1,bg:'#6B7280'},{n:2,bg:'#003952'},{n:3,bg:'#4338CA'},{n:4,bg:'#B45309'}];
 
 function computeKW(){const n=new Date();const dt=new Date(Date.UTC(n.getFullYear(),n.getMonth(),n.getDate()));dt.setUTCDate(dt.getUTCDate()+4-(dt.getUTCDay()||7));const y=new Date(Date.UTC(dt.getUTCFullYear(),0,1));return Math.ceil((((dt-y)/86400000)+1)/7)}
 
+function isoLocal(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function mondayOf(d){const x=new Date(d.getFullYear(),d.getMonth(),d.getDate());x.setDate(x.getDate()-((x.getDay()+6)%7));return x}
+function kwOf(d){const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));t.setUTCDate(t.getUTCDate()+4-(t.getUTCDay()||7));const y=new Date(Date.UTC(t.getUTCFullYear(),0,1));return Math.ceil((((t-y)/86400000)+1)/7)}
+function dm(d){return String(d.getDate()).padStart(2,'0')+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'}
+
+// Der Editor speichert in EXCEL._Woche den Montag (ISO) der Woche, zu der der Plan gehoert.
+function planWocheLabel(){
+  const pw=EXCEL._Woche;
+  if(!pw)return 'KW '+computeKW();
+  const mo=new Date(pw+'T12:00:00');const fr=new Date(mo);fr.setDate(fr.getDate()+4);
+  return 'KW '+kwOf(mo)+' ('+dm(mo)+'–'+dm(fr)+fr.getFullYear()+')';
+}
+function planVeraltet(){
+  const pw=EXCEL._Woche;if(!pw)return false;
+  const dow=new Date().getDay();if(dow===0||dow===6)return false;
+  return pw<isoLocal(mondayOf(new Date()));
+}
+
 function renderNotizen(){
   const wrap=document.getElementById('notizen-wrap');
-  if(!NOTIZEN||!NOTIZEN.length){wrap.innerHTML='';return}
+  const heute=isoLocal(new Date());
+  const aktuelle=(NOTIZEN||[]).filter(n=>!n.bis||n.bis>=heute); // abgelaufene Notizen ausblenden
   let html='';
-  NOTIZEN.forEach(n=>{
+  if(planVeraltet())html+='<div class="notiz" style="background:var(--red-bg);color:var(--red)">⚠ Dieser Plan ist veraltet: '+planWocheLabel()+' – die neue Woche ist noch nicht geplant.</div>';
+  if(!aktuelle.length){wrap.innerHTML=html;return}
+  aktuelle.forEach(n=>{
     const c=n.level==='urgent'?{bg:'var(--red-bg)',fg:'var(--red)'}:n.level==='info'?{bg:'var(--navy-bg)',fg:'var(--navy-d)'}:{bg:'var(--amber-bg)',fg:'var(--amber)'};
     html+='<div class="notiz" style="background:'+c.bg+';color:'+c.fg+'">📌 '+n.text+'</div>';
   });
@@ -75,7 +96,7 @@ function renderDays(){
   document.getElementById('days-wrap').innerHTML=html;
 }
 
-document.getElementById('kw-label').textContent='KW '+computeKW();
+document.getElementById('kw-label').textContent=planWocheLabel();
 renderNotizen();
 renderDays();
 const now=new Date();
