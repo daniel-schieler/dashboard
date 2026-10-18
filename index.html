@@ -186,7 +186,7 @@ const GC_BASE='https://app.geocapture.net/api';
 const MA_LIST=[{k:'DS',id:19749,name:'Daniel Schieler',team:'Team 1',bg:'#6B7280'},{k:'RK',id:217471,name:'Ralf Klingel',team:'Team 2 · Vorarbeiter',bg:'#003952'},{k:'CT',id:145971,name:'Christopher Teetsch',team:'Team 2',bg:'#003952'},{k:'LB',id:162054,name:'Lea Biniasch',team:'Team 2',bg:'#003952'},{k:'DZ',id:19747,name:'Dennis Zollikofer',team:'Team 3 · Vorarbeiter',bg:'#4338CA'},{k:'VB',id:244336,name:'Vincent Braun',team:'Team 4 · Vorarbeiter',bg:'#B45309'},{k:'PS',id:238121,name:'Paul Schmöhl',team:'Team 4',bg:'#B45309'}];
 const VA_MAP={'DS':{name:'Daniel Schieler',team:'Team 1',bg:'#6B7280'},'RK':{name:'Ralf Klingel',team:'Team 2',bg:'#003952'},'DZ':{name:'Dennis Zollikofer',team:'Team 3',bg:'#4338CA'},'VB':{name:'Vincent Braun',team:'Team 4',bg:'#B45309'}};
 const TEAM_CFG=[{n:1,bg:'#6B7280',label:'T1',va:'Schieler'},{n:2,bg:'#003952',label:'T2',va:'Klingel'},{n:3,bg:'#4338CA',label:'T3',va:'Zollikofer'},{n:4,bg:'#B45309',label:'T4',va:'Braun'}];
-let ABS_BY_EMP_TODAY={};
+let ABS_BY_ID={}; // Geocapture-Abwesenheiten: Mitarbeiter-ID -> {Datum: Art}
 
 function tick(){const n=new Date();document.getElementById('clk').textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')}
 tick();setInterval(tick,10000);
@@ -201,6 +201,23 @@ function getTodayKey(){if(previewDay)return previewDay;return['So','Mo','Di','Mi
 function isoLocal(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
 function mondayOf(d){const x=new Date(d.getFullYear(),d.getMonth(),d.getDate());x.setDate(x.getDate()-((x.getDay()+6)%7));return x}
 function kwOf(d){const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));t.setUTCDate(t.getUTCDate()+4-(t.getUTCDay()||7));const y=new Date(Date.UTC(t.getUTCFullYear(),0,1));return Math.ceil((((t-y)/86400000)+1)/7)}
+const DAY_KEYS=['Mo','Di','Mi','Do','Fr'];
+const DAY_NAMES={Mo:'Montag',Di:'Dienstag',Mi:'Mittwoch',Do:'Donnerstag',Fr:'Freitag'};
+// Montag der Woche, die der Plan abdeckt (Sa/So ohne Wochenangabe: kommende Woche)
+function planMonday(){
+const pw=EXCEL._Woche;if(pw)return new Date(pw+'T12:00:00');
+const n=new Date();const m=mondayOf(n);if(n.getDay()===0||n.getDay()===6)m.setDate(m.getDate()+7);return m;
+}
+// Kalenderdatum des angezeigten Tages: heute, in der Vorschau der gewaehlte Wochentag
+function dateOfDayKey(day){
+const i=DAY_KEYS.indexOf(day);
+if(!previewDay||i<0)return isoLocal(new Date());
+const d=planMonday();d.setDate(d.getDate()+i);return isoLocal(d);
+}
+function absenceOf(kuerzel,dateStr){
+const m=MA_LIST.find(x=>x.k===kuerzel);
+return m?((ABS_BY_ID[m.id]||{})[dateStr]||null):null;
+}
 function planKW(){const pw=EXCEL._Woche;return pw?kwOf(new Date(pw+'T12:00:00')):null}
 function staleInfo(){
 const pw=EXCEL._Woche;if(!pw||previewDay)return null;
@@ -250,6 +267,7 @@ document.body.insertAdjacentHTML('afterbegin',html);
 function renderTeams(){
 const day=getTodayKey();let html='';let haKran=false;
 const wochenende=!previewDay&&(day==='So'||day==='Sa');
+const dstr=dateOfDayKey(day);
 TEAM_CFG.forEach(tc=>{
 if(wochenende)return;
 const tn=tc.n;const crew=EXCEL['T'+tn+'_Crew_'+day]||'';const auf=EXCEL['T'+tn+'_Aufgabe_'+day]||'';const bs=EXCEL['T'+tn+'_Baustelle_'+day]||'–';const sh=EXCEL['T'+tn+'_Sonder_'+day]||'';const ma=EXCEL['T'+tn+'_Maschinen_'+day]||'';
@@ -260,9 +278,11 @@ const aufgaben=auf.split(/[,;\n]/).map(s=>s.trim()).filter(Boolean);
 const vaEntry=Object.entries(VA_MAP).find(([k,v])=>v.name.includes(tc.va))||null;
 const vaKey=vaEntry?vaEntry[0]:null;
 const vaInfo=vaEntry?vaEntry[1]:null;
-const vaAbsence=vaKey?ABS_BY_EMP_TODAY[vaKey]:null;
+const vaAbsence=vaKey?absenceOf(vaKey,dstr):null;
 const vaAbsColor=vaAbsence?absColor(vaAbsence):null;
-html+='<div class="tb"><div class="th"><div class="tav" style="background:'+tc.bg+(vaAbsence?';opacity:.5':'')+'">'+tc.label+'</div><div><div class="tn" style="'+(vaAbsence?'text-decoration:line-through;color:var(--text3)':'')+'">'+(vaInfo?vaInfo.name:'Team '+tn)+(crew?' <span style="font-size:10px;font-weight:500;color:var(--text3)">'+crew+'</span>':'')+'</div><div class="tc">Team '+tn+'</div></div></div>'+(vaAbsence?'<div class="stag" style="background:'+vaAbsColor.bg+';color:'+vaAbsColor.fg+';border-color:'+vaAbsColor.bd+'">⚠ Vorarbeiter '+vaAbsence+' – heute nicht dabei</div>':'')+'<div class="tsite">📍 '+bs+'</div><div class="tl">'+aufgaben.map((a,i)=>'<div class="ti"><span class="tin">'+(i+1)+'</span>'+a+'</div>').join('')+'</div>'+(sh?'<div class="stag">⚠ '+sh+'</div>':'')+(ma?'<div class="mtag">🛠 '+ma+'</div>':'')+'</div>';
+const wann=previewDay?'am '+DAY_NAMES[day]:'heute';
+const crewHtml=crew.split(/\s+/).filter(Boolean).map(k=>absenceOf(k,dstr)?'<s style="color:var(--red)" title="'+absenceOf(k,dstr)+'">'+k+'</s>':k).join(' ');
+html+='<div class="tb"><div class="th"><div class="tav" style="background:'+tc.bg+(vaAbsence?';opacity:.5':'')+'">'+tc.label+'</div><div><div class="tn" style="'+(vaAbsence?'text-decoration:line-through;color:var(--text3)':'')+'">'+(vaInfo?vaInfo.name:'Team '+tn)+(crewHtml?' <span style="font-size:10px;font-weight:500;color:var(--text3)">'+crewHtml+'</span>':'')+'</div><div class="tc">Team '+tn+'</div></div></div>'+(vaAbsence?'<div class="stag" style="background:'+vaAbsColor.bg+';color:'+vaAbsColor.fg+';border-color:'+vaAbsColor.bd+'">⚠ Vorarbeiter '+vaAbsence+' – '+wann+' nicht dabei</div>':'')+'<div class="tsite">📍 '+bs+'</div><div class="tl">'+aufgaben.map((a,i)=>'<div class="ti"><span class="tin">'+(i+1)+'</span>'+a+'</div>').join('')+'</div>'+(sh?'<div class="stag">⚠ '+sh+'</div>':'')+(ma?'<div class="mtag">🛠 '+ma+'</div>':'')+'</div>';
 });
 document.getElementById('teams-body').innerHTML=html||'<div class="notiz-empty">'+(wochenende?'Wochenende – kein Einsatzplan. Der nächste Plan gilt ab Montag.':'Für diesen Tag sind keine Teams eingeplant')+'</div>';
 if(haKran){const kh=document.getElementById('kran-hinweis');if(kh)kh.style.display='flex'}
@@ -293,16 +313,19 @@ if(typ==='Urlaub')return{bg:'#FDEBD3',fg:'#C17A00',bd:'#C17A00'};
 if(typ&&typ.indexOf('Schul')>-1)return{bg:'#DCE8FD',fg:'#2563EB',bd:'#2563EB'};
 return{bg:'#E5E7EB',fg:'#6B7280',bd:'#9CA3AF'};
 }
-function fmtDate(d){return d.toISOString().split('T')[0]}
+function fmtDate(d){return isoLocal(d)}
 async function loadMitarbeiter(){
 try{
 const today=new Date();const todayStr=fmtDate(today);
 const weekEnd=new Date(today);weekEnd.setDate(weekEnd.getDate()+6);const weekEndStr=fmtDate(weekEnd);
 const ids=MA_LIST.map(m=>m.id);const idQ=ids.map(id=>'employees[byIds][]='+id).join('&');
-const[stampsRes,absRes]=await Promise.all([gcFetch('/employee_stamp/fetch?'+idQ+'&from='+todayStr+'&to='+todayStr+'&limit=200'),gcFetch('/employee_absence/fetch?filter[from]='+todayStr+'&filter[to]='+weekEndStr+'&limit=500')]);
+// Abwesenheiten fuer die naechsten 7 Tage UND die ganze Planwoche (damit auch die Vorschau anderer Tage stimmt)
+const pm=planMonday();const pmStr=fmtDate(pm);const pf=new Date(pm);pf.setDate(pf.getDate()+4);const pfStr=fmtDate(pf);
+const absVon=pmStr<todayStr?pmStr:todayStr;const absBis=pfStr>weekEndStr?pfStr:weekEndStr;
+const[stampsRes,absRes]=await Promise.all([gcFetch('/employee_stamp/fetch?'+idQ+'&from='+todayStr+'&to='+todayStr+'&limit=200'),gcFetch('/employee_absence/fetch?filter[from]='+absVon+'&filter[to]='+absBis+'&limit=500')]);
 const gestempelt=new Set((stampsRes.result&&stampsRes.result.data||[]).map(s=>s.employeeId));
 const absByEmp={};(absRes.result&&absRes.result.data||[]).forEach(a=>{if(!absByEmp[a.employeeId])absByEmp[a.employeeId]={};absByEmp[a.employeeId][a.date]=a.absenceType});
-ABS_BY_EMP_TODAY={};MA_LIST.forEach(m=>{const a=(absByEmp[m.id]||{})[todayStr];if(a)ABS_BY_EMP_TODAY[m.k]=a});
+ABS_BY_ID=absByEmp;
 renderTeams();
 const days=[];for(let i=0;i<7;i++){const d=new Date(today);d.setDate(d.getDate()+i);days.push(d)}
 const dayLetters=['So','Mo','Di','Mi','Do','Fr','Sa'];
